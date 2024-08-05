@@ -1,0 +1,2586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kapasitas Produksi dan Koefisien Alat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Kalkulator Kapasitas Produksi dan Koefisien Alat</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form id="calcForm" method="POST">
+                <label for="alatSearch">Pilih Alat:</label><br>
+                <input type="text" id="alatSearch" name="alat" placeholder="Ketik nama alat..." autocomplete="off">
+                <ul id="dropdownList" class="hidden"></ul>
+
+                <!-- Formulir Excavator -->
+                <div id="excavatorForm" class="hidden">
+                    <label for="kondisi_operasi_exc">Kondisi Operasi Excavator:</label><br>
+                    <select name="kondisi_operasi_exc" id="kondisi_operasi_exc">
+                        <option value="Mudah">Mudah</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Agak sulit">Agak sulit</option>
+                        <option value="Sulit">Sulit</option>
+                    </select><br>
+
+                    <label for="kondisi_galian">Kondisi Galian:</label><br>
+                    <select name="kondisi_galian" id="kondisi_galian">
+                        <option value="<40%">&lt;40%</option>
+                        <option value="(40-75)%">(40-75)%</option>
+                        <option value=">75%">&gt;75%</option>
+                    </select><br>
+
+                    <label for="kondisi_dumping">Kondisi Dumping:</label><br>
+                    <select name="kondisi_dumping" id="kondisi_dumping">
+                        <option value="Mudah">Mudah</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Agak sulit">Agak sulit</option>
+                        <option value="Sulit">Sulit</option>
+                    </select><br>
+
+                    <label for="kapasitas_bucket">Kapasitas Bucket (m³):</label><br>
+                    <input type="number" name="kapasitas_bucket" id="kapasitas_bucket" step="0.1" min="0.1"><br>
+
+                    <label for="sudut_putar">Sudut Putar:</label><br>
+                    <select name="sudut_putar" id="sudut_putar">
+                        <option value="45-90">45-90 derajat</option>
+                        <option value="90-180">90-180 derajat</option>
+                    </select><br>
+
+                    <label for="kondisi_tanah">Kondisi Tanah:</label><br>
+                    <select name="kondisi_tanah" id="kondisi_tanah">
+                        <option value="1">Pasir, Kerikil, Tanah Lunak</option>
+                        <option value="2">Tanah Umumnya, Lempung</option>
+                        <option value="3">Lempung Keras, Tanah Keras</option>
+                    </select><br>
+                </div>
+                <!--Formulir AMP-->
+                <div id="ampForm" class="hidden">
+                    <label for="kondisi_operasi_amp">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_amp" id="kondisi_operasi_amp">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_amp">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_amp" id="pemeliharaan_mesin_amp">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="kapasitas_alat_amp">Kapasitas Alat AMP, Cp (ton/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_amp" id="kapasitas_alat_amp" step="0.1" min="0.1"><br>
+                </div>
+                <!--Formulir Asphalt Finisher-->
+                <div id="asphaltFinisherForm" class="hidden">
+                    <label for="kondisi_operasi_af">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_af" id="kondisi_operasi_af">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_af">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_af" id="pemeliharaan_mesin_af">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="v_af">Kecepatan menghampar (km/jam):</label><br>
+                    <input type="number" name="v_af" id="v_af" step="0.1" min="0.1"><br>
+                
+                    <label for="b_af">Lebar Hamparan, b (m):</label><br>
+                    <input type="number" name="b_af" id="b_af" step="0.1" min="0.1"><br>
+                
+                    <label for="D1_af">Berat Isi Campuran Beraspal, D1 (ton/m3):</label><br>
+                    <input type="number" name="D1_af" id="D1_af" step="0.1" min="0.1"><br>
+                
+                    <label for="t_af">Tebal, t (m)(maksimum 0,25 m):</label><br>
+                    <input type="number" name="t_af" id="t_af" step="0.05" min="0.1"><br>
+                
+                    <label for="satuan_af">Satuan Kapasitas Produksi:</label><br>
+                    <select name="satuan_af" id="satuan_af">
+                        <option value="ton/jam">ton/jam</option>
+                        <option value="m3/jam">m3/jam</option>
+                        <option value="m2/jam">m2/jam</option>
+            
+                    </select><br>
+                </div>
+                <!--Formulir Asphalt Sprayer-->
+                <div id="asphaltSprayerForm" class="hidden">
+                    <label for="kondisi_operasi_as">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_as" id="kondisi_operasi_as">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_as">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_as" id="pemeliharaan_mesin_as">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="Pa_as">Kapasitas Pompa Aspal, Pa (m3/menit):</label><br>
+                    <input type="number" name="Pa_as" id="Pa_as" step="0.1" min="0.1"><br>
+                
+                    <label for="lt_as">Pemakaian Aspal setiap m2 luas permukaan, lt (m3/m2):</label><br>
+                    <input type="number" name="lt_as" id="lt_as" step="0.1" min="0.1"><br>
+                
+                    <label for="satuan_as">Satuan Kapasitas Produksi:</label><br>
+                    <select name="satuan_as" id="satuan_as">
+                        <option value="m3/jam">m3/jam</option>
+                        <option value="m2/jam">m2/jam</option>
+                    </select><br>
+                </div>
+                <!-- Formulir Chainsaw -->
+                <div id="chainsawForm" class="hidden">
+                    <label for="kondisi_operasi">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi" id="kondisi_operasi">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin" id="pemeliharaan_mesin">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="banyak_pohon">Banyak Pohon:</label><br>
+                    <input type="number" name="banyak_pohon" id="banyak_pohon" min="1"><br>
+
+                    <label for="jam_kerja">Jam Kerja (jam):</label><br>
+                    <input type="number" name="jam_kerja" id="jam_kerja" step="0.1" min="0.1" max="24"><br>
+                </div>
+                <!--Formulir Bulldozer-->
+                <div id="bulldozerForm" class="hidden">
+                    <label for="kondisi_operasi_bull">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_bull" id="kondisi_operasi_bull">
+                        <option value="Baik">Baik sekali</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Kurang baik">Kurang baik</option>
+                        <option value="Buruk">Buruk</option>
+                    </select><br>
+                
+                    <label for="kondisi_kerja_bull">Pemeliharaan Mesin:</label><br>
+                    <select name="kondisi_kerja_bull" id="kondisi_kerja_bull">
+                        <option value="Mudah">Mudah</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Agak sulit">Agak sulit</option>
+                        <option value="Sulit">Sulit</option>
+                    </select><br>
+                
+                    <label for="b_bull">Lebar Pisau Alat, b (m):</label><br>
+                    <input type="number" name="b_bull" id="b_bull" step="0.1" min="0.1"><br>
+                    
+                    <label for="H_bull">Tinggi Pisau, H (m):</label><br>
+                    <input type="number" name="H_bull" id="H_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="bo_bull">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_bull" id="bo_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="W_bull">Lebar Area Pekerjaan, W (m):</label><br>
+                    <input type="number" name="W_bull" id="W_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="n_bull">Jumlah Lintasan, n:</label><br>
+                    <input type="number" name="n_bull" id="n_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="kemiringan_pisau_bull">Kemiringan Pisau:</label><br>
+                    <select name="kondisi_kerja_bull" id="kondisi_kerja_bull">
+                        <option value="Datar">Datar</option>
+                        <option value="Menurun">Menurun</option>
+                        <option value="Menanjak">Menanjak</option>
+                    </select><br>
+
+                    <label for="vF_bull">Kecepatan Mendorong/Mengupas, vF (km/jam):</label><br>
+                    <input type="number" name="vF_bull" id="vF_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="vR_bull">Kecepatan Mundur Kembali, vR (km/jam):</label><br>
+                    <input type="number" name="vR_bull" id="vR_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="l_bull">Jarak Pengupasan, l (m):</label><br>
+                    <input type="number" name="l_bull" id="l_bull" step="0.1" min="0.1"><br>
+                
+                    <label for="jenis_transmisi_bull">Jenis Transmisi:</label><br>
+                    <select name="jenis_transmisi_bull" id="jenis_transmisi_bull">
+                        <option value="DD">Direct Drive (DD)</option>
+                        <option value="TC">Torque Converter (TC)</option>
+                    </select><br>
+                </div>
+                <!--Formulir Air Compressor-->
+                <div id="airCompressorForm" class="hidden">
+                    <label for="kondisi_operasi_ac">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_ac" id="kondisi_operasi_ac">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_ac">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_ac" id="pemeliharaan_mesin_ac">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="kapasitas_alat_ac">Kapasitas Alat:</label><br>
+                    <input type="number" name="kapasitas_alat_ac" id="kapasitas_alat_ac" step="0.1" min="0.1"><br>
+
+                    <label for="penggunaan_ac">Penggunaan:</label><br>
+                    <select name="penggunaan_ac" id="penggunaan_ac">
+                        <option value="Jack Hammer">Digunakan untuk Jack Hammer</option>
+                        <option value="Pembersihan Jalan">Digunakan untuk membersihkan area proyek yang akan dilabur aspal</option>
+                    </select><br>
+                </div>
+                <!--Formulir Concrete Mixer-->
+                <div id="concreteMixerForm" class="hidden">
+                    <label for="kondisi_operasi_cm">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cm" id="kondisi_operasi_cm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_cm">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cm" id="pemeliharaan_mesin_cm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="Cp_cm">Kapasitas Mencampur, Cp (m3/jam):</label><br>
+                    <input type="number" name="Cp_cm" id="Cp_cm" step="0.1" min="0.1"><br>
+                
+                    <label for="T1_cm">Waktu Mengisi, T1 (menit):</label><br>
+                    <input type="number" name="T1_cm" id="T1_cm" step="0.1" min="0.1"><br>
+                
+                    <label for="T2_cm">Waktu Mencampur, T2 (menit):</label><br>
+                    <input type="number" name="T2_cm" id="T2_cm" step="0.1" min="0.1"><br>
+                
+                    <label for="T3_cm">Waktu Menuang, T3 (menit):</label><br>
+                    <input type="number" name="T3_cm" id="T3_cm" step="0.1" min="0.1"><br>
+                
+                    <label for="T4_cm">Waktu Menunggu, T4 (menit):</label><br>
+                    <input type="number" name="T4_cm" id="T4_cm" step="0.1" min="0.1"><br>
+                </div>
+                <!--Fromulir Crane (10-15 ton)-->
+                <div id="crane10Form" class="hidden">
+                    <label for="kondisi_operasi_ct">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_ct" id="kondisi_operasi_ct">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_ct">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_ct" id="pemeliharaan_mesin_ct">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="V_ct">Kapasitas Angkat Crane, V (n buah):</label><br>
+                    <input type="number" name="V_ct" id="V_ct" step="0.1" min="0.1"><br>
+                
+                    <label for="T1_ct">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
+                    <input type="number" name="T1_ct" id="T1_ct" step="0.1" min="0.1"><br>
+                
+                    <label for="T2_ct">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
+                    <input type="number" name="T2_ct" id="T2_ct" step="0.1" min="0.1"><br>
+                </div>
+                <!--Formulir Crane on Track (Crawler Crane) 75 ton-->
+                <div id="craneOnTrackForm" class="hidden">
+                    <label for="kondisi_operasi_cot">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cot" id="kondisi_operasi_cot">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_cot">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cot" id="pemeliharaan_mesin_cot">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="V_cot">Kapasitas Angkat Crane, V (n buah):</label><br>
+                    <input type="number" name="V_cot" id="V_cot" step="0.1" min="0.1"><br>
+
+                    <label for="T1_cot">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
+                    <input type="number" name="T1_cot" id="T1_cot" step="0.1" min="0.1"><br>
+
+                    <label for="T2_cot">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
+                    <input type="number" name="T2_cot" id="T2_cot" step="0.1" min="0.1"><br>
+
+                </div>                
+                <!--Formulir Crane on Track 75-100 ton-->
+                <div id="craneOnTrack75_100TonForm" class="hidden">
+                    <label for="kondisi_operasi_cot2">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cot2" id="kondisi_operasi_cot2">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_cot2">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cot2" id="pemeliharaan_mesin_cot2">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="V_cot2">Kapasitas Angkat Crane, V (n buah):</label><br>
+                    <input type="number" name="V_cot2" id="V_cot2" step="0.1" min="0.1"><br>
+
+                    <label for="T1_cot2">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
+                    <input type="number" name="T1_cot2" id="T1_cot2" step="0.1" min="0.1"><br>
+
+                    <label for="T2_cot2">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
+                    <input type="number" name="T2_cot2" id="T2_cot2" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Dump Truck -->
+                <div id="dumpTruckForm" class="hidden">
+                    <label for="kondisi_kerja_dump">Kondisi Kerja:</label><br>
+                    <select name="kondisi_kerja_dump" id="kondisi_kerja_dump">
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Kurang baik">Kurang baik</option>
+                        <option value="Buruk">Buruk</option>
+                    </select><br>
+
+                    <label for="kondisi_lapangan_dump">Kondisi Lapangan:</label><br>
+                    <select name="kondisi_lapangan_dump" id="kondisi_lapangan_dump">
+                        <option value="Datar">Datar</option>
+                        <option value="Menanjak">Menanjak</option>
+                        <option value="Menurun">Menurun</option>
+                    </select><br>
+
+                    <label for="V_dump">Kapasitas Bak, Cp (ton):</label><br>
+                    <input type="number" name="V_dump" id="V_dump" step="0.1" min="0.1"><br>
+
+                    <label for="BiL_dump">Berat Isi Material, BiL:</label><br>
+                    <input type="number" name="BiL_dump" id="BiL_dump" step="0.1" min="0.1"><br>
+
+                    <label for="L_dump">Jarak Lokasi, L (km):</label><br>
+                    <input type="number" name="L_dump" id="L_dump" step="0.1" min="0.1"><br>
+
+                    <label for="T1_dump">Waktu Mengisi, T1 (menit):</label><br>
+                    <input type="number" name="T1_dump" id="T1_dump" step="0.1" min="0.1"><br>
+
+                    <label for="T4_dump">Waktu Lain-lain, T4 (menit):</label><br>
+                    <input type="number" name="T4_dump" id="T4_dump" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Truck Semi Trailer, 15 ton -->
+                <div id="truckSemiTrailerForm" class="hidden">
+                    <label for="kondisi_kerja_tst">Kondisi Kerja:</label><br>
+                    <select name="kondisi_kerja_tst" id="kondisi_kerja_tst">
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Kurang baik">Kurang baik</option>
+                        <option value="Buruk">Buruk</option>
+                    </select><br>
+
+                    <label for="kondisi_lapangan_tst">Kondisi Lapangan:</label><br>
+                    <select name="kondisi_lapangan_tst" id="kondisi_lapangan_tst">
+                        <option value="Datar">Datar</option>
+                        <option value="Menanjak">Menanjak</option>
+                        <option value="Menurun">Menurun</option>
+                    </select><br>
+
+                    <label for="V_tst">Kapasitas Bak, Cp (ton):</label><br>
+                    <input type="number" name="V_tst" id="V_tst" step="0.1" min="0.1"><br>
+
+                    <label for="BiL_tst">Berat Isi Material, BiL:</label><br>
+                    <input type="number" name="BiL_tst" id="BiL_tst" step="0.1" min="0.1"><br>
+
+                    <label for="L_tst">Jarak Lokasi, L (km):</label><br>
+                    <input type="number" name="L_tst" id="L_tst" step="0.1" min="0.1"><br>
+
+                    <label for="T1_tst">Waktu Mengisi, T1 (menit):</label><br>
+                    <input type="number" name="T1_tst" id="T1_tst" step="0.1" min="0.1"><br>
+
+                    <label for="T4_tst">Waktu Lain-lain, T4 (menit):</label><br>
+                    <input type="number" name="T4_tst" id="T4_tst" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Generating Set (Genset) -->
+                <div id="generatingSetForm" class="hidden">
+                    <label for="kondisi_operasi_genset">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_genset" id="kondisi_operasi_genset">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_genset">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_genset" id="pemeliharaan_mesin_genset">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_genset">Kapasitas Genset, V (kW/jam):</label><br>
+                    <input type="number" name="V_genset" id="V_genset" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Motor Grader -->
+                <div id="motorGraderForm" class="hidden">
+                    <label for="kondisi_operasi_motor">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_motor" id="kondisi_operasi_motor">
+                        <option value="1">Perbaikan jalan, peralatan</option>
+                        <option value="2">Pemindahan</option>
+                        <option value="3">Penyebaran, garding</option>
+                        <option value="4">Penggalian (trenching)</option>
+                    </select><br>
+
+                    <label for="uraian_pekerjaan_motor">Uraian Pekerjaan:</label><br>
+                    <select name="uraian_pekerjaan_motor" id="uraian_pekerjaan_motor">
+                        <option value="1">Perbaikan jalan, peralatan</option>
+                        <option value="2">Penyelesaian tepi sungai/ saluran (bank finishing)</option>
+                        <option value="3">Membentuk permukaan (fieldgrading)</option>
+                        <option value="4">Perataan permukaan (levelling)</option>
+                    </select><br>
+
+                    <label for="Lh_motor">Panjang Hamparan, Lh (m):</label><br>
+                    <input type="number" name="Lh_motor" id="Lh_motor" step="0.1" min="0.1"><br>
+
+                    <label for="sudut_pisau_motor">Sudut Pisau (derajat):</label><br>
+                    <select name="sudut_pisau_motor" id="sudut_pisau_motor">
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                    </select><br>
+
+                    <label for="b_motor">Panjang Pisau, b (m):</label><br>
+                    <input type="number" name="b_motor" id="b_motor" step="0.1" min="0.1"><br>
+
+                    <label for="bo_motor">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_motor" id="bo_motor" step="0.1" min="0.1"><br>
+
+                    <label for="n_motor">Jumlah Lintasan, n (2-4 lintasan):</label><br>
+                    <input type="number" name="n_motor" id="n_motor" step="0.1" min="2" max="4"><br>
+
+                    <label for="W_motor">Lebar Area Pekerjaan, W (m):</label><br>
+                    <input type="number" name="W_motor" id="W_motor" step="0.1" min="0.1"><br>
+
+                    <label for="T2_motor">Waktu Lain-lain, T2 (menit):</label><br>
+                    <input type="number" name="T2_motor" id="T2_motor" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Track Loader -->
+                <div id="trackLoaderForm" class="hidden">
+                    <label for="kondisi_operasi_tloader">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_tloader" id="kondisi_operasi_tloader">
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Kurang baik">Kurang baik</option>
+                        <option value="Buruk">Buruk</option>
+                    </select><br>
+
+                    <label for="kondisi_penumpahan_tloader">Kondisi Penumpahan:</label><br>
+                    <select name="kondisi_penumpahan_tloader" id="kondisi_penumpahan_tloader">
+                        <option value="Mudah">Mudah: Pengambilan dpasir atau batu pecah (agregat). Pengampbilan tanah (gembur) hasil timbunan dari kupasan Bulldozer</option>
+                        <option value="Sedang">Sedang: Penggalian dan penumpahan tanah asli berpasir</option>
+                        <option value="Agak sulit">Agak sulit: pengambilan batu pecah sedang</option>
+                        <option value="Sulit">Sulit: pengambilan dan penumpahan batu pecah hasil ledakan</option>
+                    </select><br>
+
+                    <label for="kondisi_kerja_tloader">Kondisi Kerja:</label><br>
+                    <select name="kondisi_kerja_tloader" id="kondisi_kerja_tloader">
+                        <option value="Mudah">Mudah: berjalan di atas permukaan keras, rata, tidak ada perlatan lainnya, tidak ada rintangan atau halangan</option>
+                        <option value="Sedang">Sedang: Ada sedikit lonjakan di atas pemrukaan (sedikit tidak rata), jalan di atas permukaan rata, terdapat 1 atau 2 alat lain yang bekerja</option>
+                        <option value="Agak sulit">Agak sulit: banyak tonjolan di atas permukaan (tidak rata), banyak rintangan</option>
+                        <option value="Sulit">Sulit: banyak tonjilan, banyak gundukan (bergelombang), banyak alat lain bekerja</option>
+                    </select><br>
+
+                    <label for="cara_pengisian_tloader">Cara Pengisian:</label><br>
+                    <select name="cara_pengisian_tloader" id="cara_pengisian_tloader">
+                        <option value="V-Loading">V-Loading</option>
+                        <option value="Cross Loading">Cross Loading</option>
+                    </select><br>
+
+                    <label for="kapasitas_bucket_tloader">Kapasitas Bucket, V (m3):</label><br>
+                    <input type="number" name="kapasitas_bucket_tloader" id="kapasitas_bucket_tloader" step="0.1" min="0.1"><br>
+
+                    <label for="jarak_pergerakan_tloader">Jarak Pergerakan (dekat/jauh):</label><br>
+                    <select name="jarak_pergerakan_tloader" id="jarak_pergerakan_tloader">
+                        <option value="Dekat">Dekat</option>
+                        <option value="Jauh">Jauh</option>
+                    </select><br>
+
+                    <label for="L_tloader">Jarak Pemindahan, L (km):</label><br>
+                    <input type="number" name="L_tloader" id="L_tloader" step="0.1" min="0.1"><br>
+
+                    <label for="Z_tloader"> Waktu pasti, Z (0,6-0,75 menit):</label><br>
+                    <input type="number" name="Z_tloader" id="Z_tloader" step="0.1" min="0.6"><br>
+                </div>
+                <!-- Formulir Wheel Loader -->
+                <div id="wheelLoaderForm" class="hidden">
+                    <label for="kondisi_operasi_wloader">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_wloader" id="kondisi_operasi_wloader">
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Kurang baik">Kurang baik</option>
+                        <option value="Buruk">Buruk</option>
+                    </select><br>
+
+                    <label for="kondisi_penumpahan_wloader">Kondisi Penumpahan:</label><br>
+                    <select name="kondisi_penumpahan_wloader" id="kondisi_penumpahan_wloader">
+                        <option value="Mudah">Mudah: Pengambilan pasir atau batu pecah (agregat). Pengambilan tanah (gembur) hasil timbunan dari kupasan Bulldozer</option>
+                        <option value="Sedang">Sedang: Penggalian dan penumpahan tanah asli berpasir</option>
+                        <option value="Agak sulit">Agak sulit: Pengambilan batu pecah sedang</option>
+                        <option value="Sulit">Sulit: Pengambilan dan penumpahan batu pecah hasil ledakan</option>
+                    </select><br>
+
+                    <label for="kondisi_kerja_wloader">Kondisi Kerja:</label><br>
+                    <select name="kondisi_kerja_wloader" id="kondisi_kerja_wloader">
+                        <option value="Mudah">Mudah: Berjalan di atas permukaan keras, rata, tidak ada peralatan lainnya, tidak ada rintangan atau halangan</option>
+                        <option value="Sedang">Sedang: Ada sedikit lonjakan di atas permukaan (sedikit tidak rata), jalan di atas permukaan rata, terdapat 1 atau 2 alat lain yang bekerja</option>
+                        <option value="Agak sulit">Agak sulit: Banyak tonjolan di atas permukaan (tidak rata), banyak rintangan</option>
+                        <option value="Sulit">Sulit: Banyak tonjolan, banyak gundukan (bergelombang), banyak alat lain bekerja</option>
+                    </select><br>
+
+                    <label for="cara_pengisian_wloader">Cara Pengisian:</label><br>
+                    <select name="cara_pengisian_wloader" id="cara_pengisian_wloader">
+                        <option value="V-Loading">V-Loading</option>
+                        <option value="Cross Loading">Cross Loading</option>
+                    </select><br>
+
+                    <label for="kapasitas_bucket_wloader">Kapasitas Bucket, V (m3):</label><br>
+                    <input type="number" name="kapasitas_bucket_wloader" id="kapasitas_bucket_wloader" step="0.1" min="0.1"><br>
+
+                    <label for="jarak_pergerakan_wloader">Jarak Pergerakan (dekat/jauh):</label><br>
+                    <select name="jarak_pergerakan_wloader" id="jarak_pergerakan_wloader">
+                        <option value="Dekat">Dekat</option>
+                        <option value="Jauh">Jauh</option>
+                    </select><br>
+
+                    <label for="L_wloader">Jarak Pemindahan, L (km):</label><br>
+                    <input type="number" name="L_wloader" id="L_wloader" step="0.1" min="0.1"><br>
+
+                    <label for="Z_wloader">Waktu Pasti, Z (0,6-0,75 menit):</label><br>
+                    <input type="number" name="Z_wloader" id="Z_wloader" step="0.1" min="0.6"><br>
+                </div>
+                <!-- Formulir Three Wheel Loader (TWR/Macadam Roller) -->
+                <div id="threeWheelLoaderForm" class="hidden">
+                    <label for="kondisi_operasi_twr">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_twr" id="kondisi_operasi_twr">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_twr">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_twr" id="pemeliharaan_mesin_twr">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_twr">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_twr" id="v_twr" step="0.1" min="0.1"><br>
+
+                    <label for="t_twr">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_twr" id="t_twr" step="0.1" min="0.1"><br>
+
+                    <label for="b_twr">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_twr" id="b_twr" step="0.1" min="0.1"><br>
+
+                    <label for="bo_twr">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_twr" id="bo_twr" step="0.1" min="0.1"><br>
+
+                    <label for="n_twr">Jumlah Lintasann, n (6 atau 8):</label><br>
+                    <input type="number" name="n_twr" id="n_twr" step="0.1" min="0.1"><br>
+
+                    <label for="W_twr">Lebar Area Pemadatan W (m):</label><br>
+                    <input type="number" name="W_twr" id="W_twr" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Tandem Roller -->
+                <div id="tandemRollerForm" class="hidden">
+                    <label for="kondisi_operasi_tandem">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_tandem" id="kondisi_operasi_tandem">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_tandem">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_tandem" id="pemeliharaan_mesin_tandem">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_tandem">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_tandem" id="v_tandem" step="0.1" min="0.1"><br>
+
+                    <label for="t_tandem">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_tandem" id="t_tandem" step="0.1" min="0.1"><br>
+
+                    <label for="b_tandem">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_tandem" id="b_tandem" step="0.1" min="0.1"><br>
+
+                    <label for="bo_tandem">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_tandem" id="bo_tandem" step="0.1" min="0.1"><br>
+
+                    <label for="n_tandem">Jumlah Lintasan, n (6 atau 8):</label><br>
+                    <input type="number" name="n_tandem" id="n_tandem" step="0.1" min="0.1"><br>
+
+                    <label for="W_tandem">Lebar Area Pemadatan, W (m):</label><br>
+                    <input type="number" name="W_tandem" id="W_tandem" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Pneumatic Tire Roller -->
+                <div id="pneumaticTireRollerForm" class="hidden">
+                    <label for="kondisi_operasi_pneumatic">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_pneumatic" id="kondisi_operasi_pneumatic">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_pneumatic">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_pneumatic" id="pemeliharaan_mesin_pneumatic">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_pneumatic">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_pneumatic" id="v_pneumatic" step="0.1" min="0.1"><br>
+
+                    <label for="t_pneumatic">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_pneumatic" id="t_pneumatic" step="0.1" min="0.1"><br>
+
+                    <label for="b_pneumatic">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_pneumatic" id="b_pneumatic" step="0.1" min="0.1"><br>
+
+                    <label for="bo_pneumatic">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_pneumatic" id="bo_pneumatic" step="0.1" min="0.1"><br>
+
+                    <label for="n_pneumatic">Jumlah Lintasan, n (antara 6 dan 10):</label><br>
+                    <input type="number" name="n_pneumatic" id="n_pneumatic" step="0.1" min="0.1"><br>
+
+                    <label for="W_pneumatic">Lebar Area Pemadatan, W (m):</label><br>
+                    <input type="number" name="W_pneumatic" id="W_pneumatic" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Sheepsfoot Roller -->
+                <div id="sheepsfootRollerForm" class="hidden">
+                    <label for="kondisi_operasi_sheep">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_sheep" id="kondisi_operasi_sheep">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_sheep">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_sheep" id="pemeliharaan_mesin_sheep">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_sheep">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_sheep" id="v_sheep" step="0.1" min="0.1"><br>
+
+                    <label for="t_sheep">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_sheep" id="t_sheep" step="0.1" min="0.1"><br>
+
+                    <label for="b_sheep">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_sheep" id="b_sheep" step="0.1" min="0.1"><br>
+
+                    <label for="bo_sheep">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_sheep" id="bo_sheep" step="0.1" min="0.1"><br>
+
+                    <label for="n_sheep">Jumlah Lintasan, n (6 atau 8):</label><br>
+                    <input type="number" name="n_sheep" id="n_sheep" step="0.1" min="0.1"><br>
+
+                    <label for="W_sheep">Lebar Area Pemadatan, W (m):</label><br>
+                    <input type="number" name="W_sheep" id="W_sheep" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Vibratory Roller -->
+                <div id="vibratoryRollerForm" class="hidden">
+                    <label for="kondisi_operasi_vr">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_vr" id="kondisi_operasi_vr">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_vr">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_vr" id="pemeliharaan_mesin_vr">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_vr">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_vr" id="v_vr" step="0.1" min="0.1"><br>
+                    
+                    <label for="t_vr">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_vr" id="t_vr" step="0.1" min="0.1"><br>
+                    
+                    <label for="b_vr">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_vr" id="b_vr" step="0.1" min="0.1"><br>
+                    
+                    <label for="bo_vr">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_vr" id="bo_vr" step="0.1" min="0.1"><br>
+                    
+                    <label for="n_vr">Jumlah Lintasan, n (4 sampai 12):</label><br>
+                    <input type="number" name="n_vr" id="n_vr" step="0.1" min="0.1"><br>
+                    
+                    <label for="W_vr">Lebar Area Pemadatan, W (m):</label><br>
+                    <input type="number" name="W_vr" id="W_vr" step="0.1" min="0.1"><br>
+                    
+                </div>
+                <!-- Formulir Concrete Vibrator -->
+                <div id="concreteVibratorForm" class="hidden">
+                    <label for="kondisi_operasi_cv">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cv" id="kondisi_operasi_cv">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_cv">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cv" id="pemeliharaan_mesin_cv">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_cv">Kapasitas Alat, V (m3/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_cv" id="kapasitas_alat_cv" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Water Pump -->
+                <div id="waterPumpForm" class="hidden">
+                    <label for="kondisi_operasi_pump">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_pump" id="kondisi_operasi_pump">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_pump">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_pump" id="pemeliharaan_mesin_pump">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_pump">Kapasitas Alat, V (m3/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_pump" id="kapasitas_alat_pump" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Jack Hammer -->
+                <div id="jackHammerForm" class="hidden">
+                    <label for="kondisi_operasi_jack">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_jack" id="kondisi_operasi_jack">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_jack">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_jack" id="pemeliharaan_mesin_jack">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_jack">Kapasitas Alat, V (m3/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_jack" id="kapasitas_alat_jack" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Blending Equipment -->
+                <div id="blendingEquipmentForm" class="hidden">
+                    <label for="kondisi_operasi_blend">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_blend" id="kondisi_operasi_blend">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_blend">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_blend" id="pemeliharaan_mesin_blend">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_blend">Kapasitas Alat, V (m3/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_blend" id="kapasitas_alat_blend" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Asphalt Liquid Mixer -->
+                <div id="asphaltLiquidMixerForm" class="hidden">
+                    <label for="kondisi_operasi_alm">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_alm" id="kondisi_operasi_alm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_alm">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_alm" id="pemeliharaan_mesin_alm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_alm">Kapasitas Alat, V (m3/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_alm" id="kapasitas_alat_alm" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Pedestrian Roller -->
+                <div id="pedestrianRollerForm" class="hidden">
+                    <label for="kondisi_operasi_ped">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_ped" id="kondisi_operasi_ped">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_ped">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_ped" id="pemeliharaan_mesin_ped">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_ped">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_ped" id="v_ped" step="0.1" min="0.1"><br>
+
+                    <label for="t_ped">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_ped" id="t_ped" step="0.1" min="0.1"><br>
+
+                    <label for="b_ped">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_ped" id="b_ped" step="0.1" min="0.1"><br>
+
+                    <label for="bo_ped">Lebar Overlap, bo (0,2 m):</label><br>
+                    <input type="number" name="bo_ped" id="bo_ped" step="0.1" min="0.1"><br>
+
+                    <label for="n_ped">Jumlah Lintasan, n (4 sampai 12):</label><br>
+                    <input type="number" name="n_ped" id="n_ped" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Tamper -->
+                <div id="tamperForm" class="hidden">
+                    <label for="kondisi_operasi_tamper">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_tamper" id="kondisi_operasi_tamper">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_tamper">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_tamper" id="pemeliharaan_mesin_tamper">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_tamper">Kecepatan Lintasan Pemadatan, v (1 km/jam):</label><br>
+                    <input type="number" name="v_tamper" id="v_tamper" step="0.1" min="1" max="1"><br>
+
+                    <label for="lbr_tamper">Lebar Telapak, lbr (m):</label><br>
+                    <input type="number" name="lbr_tamper" id="lbr_tamper" step="0.1" min="0.1"><br>
+
+                    <label for="t_tamper">Tebal Pemadatan, t (m):</label><br>
+                    <input type="number" name="t_tamper" id="t_tamper" step="0.1" min="0.1"><br>
+
+                    <label for="N_tamper">Jumlah Lapisanm N:</label><br>
+                    <input type="number" name="N_tamper" id="N_tamper" step="0.1" min="0.1"><br>
+
+                    <label for="n_tamper">Banyak Tumbukan, n:</label><br>
+                    <input type="number" name="n_tamper" id="n_tamper" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Vibrating Rammer -->
+                <div id="vibratingRammerForm" class="hidden">
+                    <label for="kondisi_operasi_vib">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_vib" id="kondisi_operasi_vib">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_vib">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_vib" id="pemeliharaan_mesin_vib">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_vib">Kecepatan Lintasan Pemadatan, v (1 km/jam):</label><br>
+                    <input type="number" name="v_vib" id="v_vib" step="0.1" min="1" max="1"><br>
+
+                    <label for="lbr_vib">Lebar Telapak, lbr (m):</label><br>
+                    <input type="number" name="lbr_vib" id="lbr_vib" step="0.1" min="0.1"><br>
+
+                    <label for="t_vib">Tebal Pemadatan, t (m):</label><br>
+                    <input type="number" name="t_vib" id="t_vib" step="0.1" min="0.1"><br>
+
+                    <label for="N_vib">Jumlah Lapisan, N:</label><br>
+                    <input type="number" name="N_vib" id="N_vib" step="0.1" min="0.1"><br>
+
+                    <label for="n_vib">Banyak Tumbukan, n:</label><br>
+                    <input type="number" name="n_vib" id="n_vib" step="0.1" min="0.1"><br>
+
+                </div>
+                <!-- Formulir Pulvi Mixer (Soil Stabilizer) -->
+                <div id="pulviMixerForm" class="hidden">
+                    <label for="kondisi_operasi_pulvi">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_pulvi" id="kondisi_operasi_pulvi">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_pulvi">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_pulvi" id="pemeliharaan_mesin_pulvi">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_pulvi">Keceoatan Rata-rata, v (km/jam):</label><br>
+                    <input type="number" name="v_pulvi" id="v_pulvi" step="0.1" min="0.1"><br>
+
+                    <label for="b_pulvi">Lebar Pemotongan, b (m):</label><br>
+                    <input type="number" name="b_pulvi" id="b_pulvi" step="0.1" min="0.1"><br>
+
+                    <label for="t_pulvi">Tebal Pemadatan, t (m):</label><br>
+                    <input type="number" name="t_pulvi" id="t_pulvi" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Concrete Pump -->
+                <div id="concretePumpForm" class="hidden">
+                    <!-- Asumsi tidak ada parameter untuk concrete pump -->
+                    <p>Tidak ada parameter yang diperlukan untuk Concrete Pump.</p>
+                </div>
+                <!-- Formulir Pile Driver-Hammer -->
+                <div id="pileDriverHammerForm" class="hidden">
+                    <label for="kondisi_operasi_pdh">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_pdh" id="kondisi_operasi_pdh">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_pdh">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_pdh" id="pemeliharaan_mesin_pdh">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_pdh">Kapasitas Alat, V (titik):</label><br>
+                    <input type="number" name="V_pdh" id="V_pdh" step="0.1" min="0.1"><br>
+
+                    <label for="p_pdh">Panjang tiap pancang tertanam dalam satu titik, p (m):</label><br>
+                    <input type="number" name="p_pdh" id="p_pdh" step="0.1" min="0.1"><br>
+
+                    <label for="T1_pdh">Lama waktu menggeser dan menyetel tiang, T1 (30-40 menit):</label><br>
+                    <input type="number" name="T1_pdh" id="T1_pdh" step="0.1" min="0.1"><br>
+
+                    <label for="T2_pdh">Lama waktu pemancangan sampai kalendering, T2 (menit):</label><br>
+                    <input type="number" name="T2_pdh" id="T2_pdh" step="0.1" min="0.1"><br>
+
+                    <label for="T3_pdh">Lama waktu penyambungan tiang, T3 (20-40 menit):</label><br>
+                    <input type="number" name="T3_pdh" id="T3_pdh" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Welding Set -->
+                <div id="weldingSetForm" class="hidden">
+                    <label for="kondisi_operasi_weld">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_weld" id="kondisi_operasi_weld">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_weld">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_weld" id="pemeliharaan_mesin_weld">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="jarak_antar_sambungan_weld">Jarak Antar Sambungan, S (m) :</label><br>
+                    <input type="number" name="jarak_antar_sambungan_weld" id="jarak_antar_sambungan_weld" step="0.1" min="0.1"><br>
+
+                    <label for="T_weld">Waktu Setiap Penyambungan, T (menit):</label><br>
+                    <input type="number" name="T_weld" id="T_weld" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Bored Pile Drilling Machine -->
+                <div id="boredPileDrillingForm" class="hidden">
+                    <label for="kondisi_operasi_bored">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_bored" id="kondisi_operasi_bored">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_bored">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_bored" id="pemeliharaan_mesin_bored">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_bored">Kapasitas Alat, V (titik):</label><br>
+                    <input type="number" name="V_bored" id="V_bored" step="0.1" min="0.1"><br>
+
+                    <label for="p_bored">Kedalaman Pemboran, p (m):</label><br>
+                    <input type="number" name="p_bored" id="p_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T1_bored">Waktu check titik bore, T1 (menit):</label><br>
+                    <input type="number" name="T1_bored" id="T1_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T2_bored">Waktu persiapan alat T2, (menit):</label><br>
+                    <input type="number" name="T2_bored" id="T2_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T3_bored">Waktu check ketegakan alat, T3 (menit):</label><br>
+                    <input type="number" name="T3_bored" id="T3_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T4_bored">Waktu unyuk pasang casing, T4 (menit):</label><br>
+                    <input type="number" name="T4_bored" id="T4_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T5_bored">Waktu untuk pengeboran, T5 (menit):</label><br>
+                    <input type="number" name="T5_bored" id="T5_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T6_bored">Waktu untuk cleaning, T6 (menit):</label><br>
+                    <input type="number" name="T6_bored" id="T6_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T7_bored">Waktu untuk instalasi besi, T7 (menit):</label><br>
+                    <input type="number" name="T7_bored" id="T7_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T8_bored">Waktu untuk pengecoran, T8 (menit):</label><br>
+                    <input type="number" name="T8_bored" id="T8_bored" step="0.1" min="0.1"><br>
+
+                    <label for="T9_bored">Waktu untuk tarik casing, T9 (menit):</label><br>
+                    <input type="number" name="T9_bored" id="T9_bored" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Road Milling Machine -->
+                <div id="roadMillingForm" class="hidden">
+                    <label for="kondisi_operasi_mill">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_mill" id="kondisi_operasi_mill">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_mill">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_mill" id="pemeliharaan_mesin_mill">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_mill">Kecepatan Pembongkaran , v (m/menit):</label><br>
+                    <input type="number" name="v_mill" id="v_mill" step="0.1" min="0.1"><br>
+
+                    <label for="b_mill">Kapasitas Lebar Pembongkaran, b (m):</label><br>
+                    <input type="number" name="b_mill" id="b_mill" step="0.1" min="0.1"><br>
+
+                    <label for="t_mill">Tebal Pembongkaran, t (m):</label><br>
+                    <input type="number" name="t_mill" id="t_mill" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Rock Drill Breaker -->
+                <div id="rockDrillBreakerForm" class="hidden">
+                    <label for="kondisi_operasi_rock">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_rock" id="kondisi_operasi_rock">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_rock">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_rock" id="pemeliharaan_mesin_rock">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_rock">Kapasitas Breaker, V (m3):</label><br>
+                    <input type="number" name="V_rock" id="V_rock" step="0.1" min="0.1"><br>
+
+                    <label for="D_rock">Diameter Breaker, D (m):</label><br>
+                    <input type="number" name="D_rock" id="D_rock" step="0.1" min="0.1"><br>
+
+                    <label for="Faktor_breaker_rock">Faktor Breaker, Fb:</label><br>
+                    <input type="number" name="Faktor_breaker_rock" id="Faktor_breaker_rock" step="0.1" min="0.1"><br>
+
+                    <label for="T1_rock">Waktu Memahat, T1 (menit):</label><br>
+                    <input type="number" name="T1_rock" id="T1_rock" step="0.1" min="0.1"><br>
+
+                    <label for="T2_rock">Waktu Lain-lain, T2 (menit):</label><br>
+                    <input type="number" name="T2_rock" id="T2_rock" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Cold Recycler -->
+                <div id="coldRecyclerForm" class="hidden">
+                    <label for="kondisi_operasi_cold">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cold" id="kondisi_operasi_cold">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_cold">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cold" id="pemeliharaan_mesin_cold">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_cold">Kecepatan Pengupasan, v (m/menit):</label><br>
+                    <input type="number" name="v_cold" id="v_cold" step="0.1" min="0.1"><br>
+
+                    <label for="b_cold">Lebar Pengupasan, b (m):</label><br>
+                    <input type="number" name="b_cold" id="b_cold" step="0.1" min="0.1"><br>
+
+                    <label for="t_cold">Tebal Galian, t (m):</label><br>
+                    <input type="number" name="t_cold" id="t_cold" step="0.1" min="0.1"><br>
+
+                    <label for="satuan_cold">Satuan Kapasitas Produksi:</label><br>
+                    <select name="pemeliharaan_mesin_cold" id="pemeliharaan_mesin_cold">
+                        <option value="m3/jam">m3/jam</option>
+                        <option value="m2/jam">m2/jam</option>
+                    </select><br>
+                </div>
+                <!-- Formulir Hot Recycler -->
+                <div id="hotRecyclerForm" class="hidden">
+                    <label for="kondisi_operasi_hot">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_hot" id="kondisi_operasi_hot">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_hot">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_hot" id="pemeliharaan_mesin_hot">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_hot">Kecepatan Pengupasan, v (m/menit):</label><br>
+                    <input type="number" name="v_hot" id="v_hot" step="0.1" min="0.1"><br>
+
+                    <label for="b_hot">Lebar Pengupasan, b (m):</label><br>
+                    <input type="number" name="b_hot" id="b_hot" step="0.1" min="0.1"><br>
+
+                    <label for="t_hot">Tebal Galian, t (m):</label><br>
+                    <input type="number" name="t_hot" id="t_hot" step="0.1" min="0.1"><br>
+
+                    <label for="satuan_hot">Satuan Kapasitas Produksi:</label><br>
+                    <select name="satuan_hot" id="satuan_hot">
+                        <option value="m3/jam">m3/jam</option>
+                        <option value="m2/jam">m2/jam</option>
+                    </select><br>
+
+                </div>
+                <!-- Formulir Aggregate Spreader -->
+                <div id="aggregateSpreaderForm" class="hidden">
+                    <label for="kondisi_operasi_agg">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_agg" id="kondisi_operasi_agg">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_agg">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_agg" id="pemeliharaan_mesin_agg">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_agg">Kapasitas Bak, Cp (ton):</label><br>
+                    <input type="number" name="Cp_agg" id="Cp_agg" step="0.1" min="0.1"><br>
+
+                    <label for="b_agg">Lebar Penghamparan, b (m):</label><br>
+                    <input type="number" name="b_agg" id="b_agg" step="0.1" min="0.1"><br>
+
+                    <label for="t_agg">Tebal Kedalaman Pengupasan, t (m):</label><br>
+                    <input type="number" name="t_agg" id="t_agg" step="0.1" min="0.1"><br>
+
+                    <label for="v_agg">Kecepatan Rata-rata, v (km/jam):</label><br>
+                    <input type="number" name="v_agg" id="v_agg" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Asphalt Distributor -->
+                <div id="asphaltDistributorForm" class="hidden">
+                    <label for="kondisi_operasi_asd">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_asd" id="kondisi_operasi_asd">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_asd">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_asd" id="pemeliharaan_mesin_asd">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_asd">Kapasitas Tangki Aspal, Cp (m3):</label><br>
+                    <input type="number" name="Cp_asd" id="Cp_asd" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Concrete Paving Machine -->
+                <div id="concretePavingMachineForm" class="hidden">
+                    <label for="kondisi_operasi_cpm">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cpm" id="kondisi_operasi_cpm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_cpm">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cpm" id="pemeliharaan_mesin_cpm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="b_cpm">Lebar Hamparan, b (m):</label><br>
+                    <input type="number" name="b_cpm" id="b_cpm" step="0.1" min="0.1"><br>
+
+                    <label for="v_cpm">Kecepatan menghampar, v (m/menit):</label><br>
+                    <input type="number" name="v_cpm" id="v_cpm" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Batching Plant (Concrete Pan Mixer) -->
+                <div id="batchingPlantForm" class="hidden">
+                    <label for="kondisi_operasi_batch">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_batch" id="kondisi_operasi_batch">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_batch">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_batch" id="pemeliharaan_mesin_batch">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_batch">Kapasitas Produksi, V (liter):</label><br>
+                    <input type="number" name="V_batch" id="V_batch" step="0.1" min="0.1"><br>
+
+                    <label for="T1_batch">Lama Waktu Mengisi, T1 (menit):</label><br>
+                    <input type="number" name="T1_batch" id="T1_batch" step="0.1" min="0.1"><br>
+
+                    <label for="T2_batch">Lama Waktu Mengaduk, T2 (menit):</label><br>
+                    <input type="number" name="T2_batch" id="T2_batch" step="0.1" min="0.1"><br>
+
+                    <label for="T3_batch">Lama Waktu Menuang, T3 (menit):</label><br>
+                    <input type="number" name="T3_batch" id="T3_batch" step="0.1" min="0.1"><br>
+
+                    <label for="T4_batch">Lama Waktu Menunggu, dll., T4 (menit):</label><br>
+                    <input type="number" name="T4_batch" id="T4_batch" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Concrete Breaker (Drop Hammer) -->
+                <div id="concreteBreakerForm" class="hidden">
+                    <label for="kondisi_operasi_hammer">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_hammer" id="kondisi_operasi_hammer">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_hammer">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_hammer" id="pemeliharaan_mesin_hammer">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_hammer">Kecepatan Rata-rata, v (m/menit):</label><br>
+                    <input type="number" name="v_hammer" id="v_hammer" step="0.1" min="0.1"><br>
+
+                    <label for="b_hammer">Lebar Penghancuran, b (m):</label><br>
+                    <input type="number" name="b_hammer" id="b_hammer" step="0.1" min="0.1"><br>
+
+                    <label for="t_hammer">Tebal Lapisan Beton, t (m):</label><br>
+                    <input type="number" name="t_hammer" id="t_hammer" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Asphalt Tank Truck -->
+                <div id="asphaltTankTruckForm" class="hidden">
+                    <label for="kondisi_operasi_att">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_att" id="kondisi_operasi_att">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_att">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_att" id="pemeliharaan_mesin_att">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Pa_att">Kapasitas Pompa Aspal, Pa (m3/jam):</label><br>
+                    <input type="number" name="Pa_att" id="Pa_att" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Cement Tank Truck -->
+                <div id="cementTankTruckForm" class="hidden">
+                    <label for="kondisi_operasi_ctt">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_ctt" id="kondisi_operasi_ctt">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_ctt">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_ctt" id="pemeliharaan_mesin_ctt">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_ctt">V:</label><br>
+                    <input type="number" name="V_ctt" id="V_ctt" step="0.1" min="0.1"><br>
+
+                    <label for="T1_ctt">T1:</label><br>
+                    <input type="number" name="T1_ctt" id="T1_ctt" step="0.1" min="0.1"><br>
+
+                    <label for="T2_ctt">T2:</label><br>
+                    <input type="number" name="T2_ctt" id="T2_ctt" step="0.1" min="0.1"><br>
+
+                    <label for="T3_ctt">T3:</label><br>
+                    <input type="number" name="T3_ctt" id="T3_ctt" step="0.1" min="0.1"><br>
+
+                    <label for="T4_ctt">T4:</label><br>
+                    <input type="number" name="T4_ctt" id="T4_ctt" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Concrete Truck Mixer -->
+                <div id="concreteTruckMixerForm" class="hidden">
+                    <label for="kondisi_operasi_ctm">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_ctm" id="kondisi_operasi_ctm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_ctm">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_ctm" id="pemeliharaan_mesin_ctm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_ctm">Kapasitas Drum, V (m3):</label><br>
+                    <input type="number" name="V_ctm" id="V_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="Q1_ctm">Kapsitas Produksi Pengisi (Concrete Pan Mixer), Q1 (m3/jam):</label><br>
+                    <input type="number" name="Q1_ctm" id="Q1_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="L_ctm">Jarak Tempuh, L (km):</label><br>
+                    <input type="number" name="L_ctm" id="L_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="vF_ctm">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_ctm" id="vF_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="vR_ctm">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_ctm" id="vR_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="T4_ctm">Waktu Penumpahan, T4 (menit):</label><br>
+                    <input type="number" name="T4_ctm" id="T4_ctm" step="0.1" min="0.1"><br>
+
+                    <label for="T5_ctm">Waktu Menunggu, T5 (menit):</label><br>
+                    <input type="number" name="T5_ctm" id="T5_ctm" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Bore Pile Machine dia. 60 cm -->
+                <div id="borePileMachine60Form" class="hidden">
+                    <label for="kondisi_operasi_bor60">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_bor60" id="kondisi_operasi_bor60">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_bor60">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_bor60" id="pemeliharaan_mesin_bor60">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_bor60">Kapasitas Alat, V (titik):</label><br>
+                    <input type="number" name="V_bor60" id="V_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="p_bor60">Kedalaman Pemboran, P (m):</label><br>
+                    <input type="number" name="p_bor60" id="p_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T1_bor60">Waktu check titik bore, T1 (menit):</label><br>
+                    <input type="number" name="T1_bor60" id="T1_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T2_bor60">Waktu persiapan alat T2, (menit):</label><br>
+                    <input type="number" name="T2_bor60" id="T2_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T3_bor60">Waktu check ketegakan alat, T3 (menit):</label><br>
+                    <input type="number" name="T3_bor60" id="T3_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T4_bor60">Waktu untuk pasang casing, T4 (menit):</label><br>
+                    <input type="number" name="T4_bor60" id="T4_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T5_bor60">Waktu untuk pengeboran, T5 (menit):</label><br>
+                    <input type="number" name="T5_bor60" id="T5_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T6_bor60">Waktu untuk cleaning, T6 (menit):</label><br>
+                    <input type="number" name="T6_bor60" id="T6_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T7_bor60">Waktu untuk instalasi besi, T7 (menit):</label><br>
+                    <input type="number" name="T7_bor60" id="T7_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T8_bor60">Waktu untuk pengecoran, T8 (menit):</label><br>
+                    <input type="number" name="T8_bor60" id="T8_bor60" step="0.1" min="0.1"><br>
+                    
+                    <label for="T9_bor60">Waktu untuk tarik casing, T9 (menit):</label><br>
+                    <input type="number" name="T9_bor60" id="T9_bor60" step="0.1" min="0.1"><br>
+                    
+                </div>
+                <!-- Formulir Aplikator Cat Marka Jalan Thermoplastic -->
+                <div id="aplikatorCatThermoplasticForm" class="hidden">
+                    <label for="V_cat">Kapasitas Pengecatan, V (kg/m2):</label><br>
+                    <input type="number" name="V_cat" id="V_cat" step="0.1" min="0.1"><br>
+
+                    <label for="Bc_cat">Berat Cat per m2, Bc (kg/m2):</label><br>
+                    <input type="number" name="Bc_cat" id="Bc_cat" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Kapal Tongkang/Perahu -->
+                <div id="kapalTongkangForm" class="hidden">
+                    <label for="kondisi_operasi_kapal">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_kapal" id="kondisi_operasi_kapal">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_kapal">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_kapal" id="pemeliharaan_mesin_kapal">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_kapal">Cp:</label><br>
+                    <input type="number" name="Cp_kapal" id="Cp_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="BiL_kapal">BiL:</label><br>
+                    <input type="number" name="BiL_kapal" id="BiL_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="Q1_kapal">Q1:</label><br>
+                    <input type="number" name="Q1_kapal" id="Q1_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="L_kapal">L:</label><br>
+                    <input type="number" name="L_kapal" id="L_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="vF_kapal">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_kapal" id="vF_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="vR_kapal">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_kapal" id="vR_kapal" step="0.1" min="0.1"><br>
+
+                    <label for="T4_kapal">T4:</label><br>
+                    <input type="number" name="T4_kapal" id="T4_kapal" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Fork Lift -->
+                <div id="forkLiftForm" class="hidden">
+                    <label for="kondisi_operasi_fork">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_fork" id="kondisi_operasi_fork">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_fork">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_fork" id="pemeliharaan_mesin_fork">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_fork">V:</label><br>
+                    <input type="number" name="V_fork" id="V_fork" step="0.1" min="0.1"><br>
+
+                    <label for="L_fork">L:</label><br>
+                    <input type="number" name="L_fork" id="L_fork" step="0.1" min="0.1"><br>
+
+                    <label for="vF_fork">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_fork" id="vF_fork" step="0.1" min="0.1"><br>
+
+                    <label for="vR_fork">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_fork" id="vR_fork" step="0.1" min="0.1"><br>
+
+                    <label for="T3_fork">T3:</label><br>
+                    <input type="number" name="T3_fork" id="T3_fork" step="0.1" min="0.1"><br>
+
+                    <label for="T4_fork">T4:</label><br>
+                    <input type="number" name="T4_fork" id="T4_fork" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Concrete Cutter -->
+                <div id="concreteCutterForm" class="hidden">
+                    <label for="kondisi_operasi_cutt">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_cutt" id="kondisi_operasi_cutt">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_cutt">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_cutt" id="pemeliharaan_mesin_cutt">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_cutt">Kapasitas Alat:</label><br>
+                    <input type="number" name="kapasitas_alat_cutt" id="kapasitas_alat_cutt" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Power Broom -->
+                <div id="powerBroomForm" class="hidden">
+                    <label for="kondisi_operasi_broom">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_broom" id="kondisi_operasi_broom">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_broom">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_broom" id="pemeliharaan_mesin_broom">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_broom">V:</label><br>
+                    <input type="number" name="v_broom" id="v_broom" step="0.1" min="0.1"><br>
+
+                    <label for="b_broom">b:</label><br>
+                    <input type="number" name="b_broom" id="b_broom" step="0.1" min="0.1"><br>
+
+                    <label for="Kdr_broom">Kdr:</label><br>
+                    <input type="number" name="Kdr_broom" id="Kdr_broom" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Asphalt Slurry Seal Truck -->
+                <div id="asphaltSlurrySealTruckForm" class="hidden">
+                    <label for="kondisi_operasi_asst">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_asst" id="kondisi_operasi_asst">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_asst">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_asst" id="pemeliharaan_mesin_asst">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_asst">Cp:</label><br>
+                    <input type="number" name="Cp_asst" id="Cp_asst" step="0.1" min="0.1"><br>
+
+                    <label for="v_asst">V:</label><br>
+                    <input type="number" name="v_asst" id="v_asst" step="0.1" min="0.1"><br>
+
+                    <label for="b_asst">b:</label><br>
+                    <input type="number" name="b_asst" id="b_asst" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Truck Mixer Agitator -->
+                <div id="truckMixerAgitatorForm" class="hidden">
+                    <label for="kondisi_operasi_tma">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_tma" id="kondisi_operasi_tma">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_tma">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_tma" id="pemeliharaan_mesin_tma">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_tma">V:</label><br>
+                    <input type="number" name="V_tma" id="V_tma" step="0.1" min="0.1"><br>
+
+                    <label for="L_tma">L:</label><br>
+                    <input type="number" name="L_tma" id="L_tma" step="0.1" min="0.1"><br>
+
+                    <label for="vF_tma">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_tma" id="vF_tma" step="0.1" min="0.1"><br>
+
+                    <label for="vR_tma">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_tma" id="vR_tma" step="0.1" min="0.1"><br>
+
+                    <label for="T3_tma">T3:</label><br>
+                    <input type="number" name="T3_tma" id="T3_tma" step="0.1" min="0.1"><br>
+
+                    <label for="T4_tma">T4:</label><br>
+                    <input type="number" name="T4_tma" id="T4_tma" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Self Propelled Mixer -->
+                <div id="selfPropelledMixerForm" class="hidden">
+                    <label for="kondisi_operasi_spm">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_spm" id="kondisi_operasi_spm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_spm">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_spm" id="pemeliharaan_mesin_spm">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="v_spm">v:</label><br>
+                    <input type="number" name="v_spm" id="v_spm" step="0.1" min="0.1"><br>
+
+                    <label for="b_spm">b:</label><br>
+                    <input type="number" name="b_spm" id="b_spm" step="0.1" min="0.1"><br>
+
+                    <label for="n_spm">n:</label><br>
+                    <input type="number" name="n_spm" id="n_spm" step="0.1" min="0.1"><br>
+
+                    <label for="t_spm">t:</label><br>
+                    <input type="number" name="t_spm" id="t_spm" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Stressing Jack -->
+                <div id="stressingJackForm" class="hidden">
+                    <label for="kondisi_operasi_stress">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_stress" id="kondisi_operasi_stress">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_stress">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_stress" id="pemeliharaan_mesin_stress">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_stress">V:</label><br>
+                    <input type="number" name="V_stress" id="V_stress" step="0.1" min="0.1"><br>
+
+                    <label for="N_stress">N:</label><br>
+                    <input type="number" name="N_stress" id="N_stress" step="0.1" min="0.1"><br>
+
+                    <label for="T1_stress">T1:</label><br>
+                    <input type="number" name="T1_stress" id="T1_stress" step="0.1" min="0.1"><br>
+
+                    <label for="T2_stress">T2:</label><br>
+                    <input type="number" name="T2_stress" id="T2_stress" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Grouting Pump -->
+                <div id="groutingPumpForm" class="hidden">
+                    <label for="kondisi_operasi_grout">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_grout" id="kondisi_operasi_grout">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_grout">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_grout" id="pemeliharaan_mesin_grout">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_grout">V:</label><br>
+                    <input type="number" name="V_grout" id="V_grout" step="0.1" min="0.1"><br>
+
+                    <label for="N_grout">N:</label><br>
+                    <input type="number" name="N_grout" id="N_grout" step="0.1" min="0.1"><br>
+
+                    <label for="T1_grout">T1:</label><br>
+                    <input type="number" name="T1_grout" id="T1_grout" step="0.1" min="0.1"><br>
+
+                    <label for="T2_grout">T2:</label><br>
+                    <input type="number" name="T2_grout" id="T2_grout" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Trailer Tronton 30 T -->
+                <div id="trailerTronton30tForm" class="hidden">
+                    <label for="kondisi_operasi_tronton">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_tronton" id="kondisi_operasi_tronton">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_tronton">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_tronton" id="pemeliharaan_mesin_tronton">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_tronton">V:</label><br>
+                    <input type="number" name="V_tronton" id="V_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="L_tronton">L:</label><br>
+                    <input type="number" name="L_tronton" id="L_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="vF_tronton">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_tronton" id="vF_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="vR_tronton">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_tronton" id="vR_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="T1_tronton">T1:</label><br>
+                    <input type="number" name="T1_tronton" id="T1_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="T4_tronton">T4:</label><br>
+                    <input type="number" name="T4_tronton" id="T4_tronton" step="0.1" min="0.1"><br>
+
+                    <label for="T5_tronton">T5:</label><br>
+                    <input type="number" name="T5_tronton" id="T5_tronton" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Ponton + Tug Boat -->
+                <div id="pontonForm" class="hidden">
+                    <label for="V_ponton">V:</label><br>
+                    <input type="number" name="V_ponton" id="V_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="Qa_ponton">Qa:</label><br>
+                    <input type="number" name="Qa_ponton" id="Qa_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="Q1_ponton">Q1:</label><br>
+                    <input type="number" name="Q1_ponton" id="Q1_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="L_ponton">L:</label><br>
+                    <input type="number" name="L_ponton" id="L_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="vF_ponton">Kecepatan Bermuatan, vF (km/jam):</label><br>
+                    <input type="number" name="vF_ponton" id="vF_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="vR_ponton">Kecepatan Kosong, vR (km/jam):</label><br>
+                    <input type="number" name="vR_ponton" id="vR_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="T1_ponton">T1:</label><br>
+                    <input type="number" name="T1_ponton" id="T1_ponton" step="0.1" min="0.1"><br>
+
+                    <label for="T5_ponton">T5:</label><br>
+                    <input type="number" name="T5_ponton" id="T5_ponton" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Pre Heater/ Boiler -->
+                <div id="boilerForm" class="hidden">
+                    <label for="kondisi_operasi_boil">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_boil" id="kondisi_operasi_boil">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_boil">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_boil" id="pemeliharaan_mesin_boil">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_boil">V:</label><br>
+                    <input type="number" name="V_boil" id="V_boil" step="0.1" min="0.1"><br>
+
+                    <label for="waktu_siklus_boil">Waktu Siklus:</label><br>
+                    <input type="number" name="waktu_siklus_boil" id="waktu_siklus_boil" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Drum Mixer Khusus -->
+                <div id="drumMixerForm" class="hidden">
+                    <label for="kondisi_operasi_dmk">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_dmk" id="kondisi_operasi_dmk">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_dmk">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_dmk" id="pemeliharaan_mesin_dmk">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_dmk">V:</label><br>
+                    <input type="number" name="V_dmk" id="V_dmk" step="0.1" min="0.1"><br>
+
+                    <label for="T1_dmk">T1:</label><br>
+                    <input type="number" name="T1_dmk" id="T1_dmk" step="0.1" min="0.1"><br>
+
+                    <label for="T2_dmk">T2:</label><br>
+                    <input type="number" name="T2_dmk" id="T2_dmk" step="0.1" min="0.1"><br>
+
+                    <label for="T3_dmk">T3:</label><br>
+                    <input type="number" name="T3_dmk" id="T3_dmk" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Hot Compressor Air Lance (HCA) -->
+                <div id="hcaForm" class="hidden">
+                    <label for="kondisi_operasi_hca">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_hca" id="kondisi_operasi_hca">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_hca">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_hca" id="pemeliharaan_mesin_hca">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_hca">V:</label><br>
+                    <input type="number" name="V_hca" id="V_hca" step="0.1" min="0.1"><br>
+
+                    <label for="waktu_siklus_hca">Waktu Siklus:</label><br>
+                    <input type="number" name="waktu_siklus_hca" id="waktu_siklus_hca" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Silicon Seal Pump -->
+                <div id="siliconSealPumpForm" class="hidden">
+                    <label for="kondisi_operasi_silicon">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_silicon" id="kondisi_operasi_silicon">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_silicon">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_silicon" id="pemeliharaan_mesin_silicon">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_silicon">V:</label><br>
+                    <input type="number" name="V_silicon" id="V_silicon" step="0.1" min="0.1"><br>
+
+                    <label for="Ws_silicon">Ws:</label><br>
+                    <input type="number" name="Ws_silicon" id="Ws_silicon" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Kunci Torsi (Torque Wrench) -->
+                <div id="kunciTorsiForm" class="hidden">
+                    <label for="kondisi_operasi_torsi">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_torsi" id="kondisi_operasi_torsi">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_torsi">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_torsi" id="pemeliharaan_mesin_torsi">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="T1_torsi">T1:</label><br>
+                    <input type="number" name="T1_torsi" id="T1_torsi" step="0.1" min="0.1"><br>
+
+                    <label for="T2_torsi">T2:</label><br>
+                    <input type="number" name="T2_torsi" id="T2_torsi" step="0.1" min="0.1"><br>
+
+                    <label for="T3_torsi">T3:</label><br>
+                    <input type="number" name="T3_torsi" id="T3_torsi" step="0.1" min="0.1"><br>
+
+                    <label for="T4_torsi">T4:</label><br>
+                    <input type="number" name="T4_torsi" id="T4_torsi" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Gerinda Tangan -->
+                <div id="gerindaTanganForm" class="hidden">
+                    <label for="kondisi_operasi_gerinda">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_gerinda" id="kondisi_operasi_gerinda">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_gerinda">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_gerinda" id="pemeliharaan_mesin_gerinda">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_gerinda">Kapasitas Alat:</label><br>
+                    <input type="number" name="kapasitas_alat_gerinda" id="kapasitas_alat_gerinda" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Water Jet Blasting -->
+                <div id="waterJetBlastingForm" class="hidden">
+                    <label for="kondisi_operasi_jet">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_jet" id="kondisi_operasi_jet">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_jet">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_jet" id="pemeliharaan_mesin_jet">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat_jet">Kapasitas Alat:</label><br>
+                    <input type="number" name="kapasitas_alat_jet" id="kapasitas_alat_jet" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Hand Mixer -->
+                <div id="handMixerForm" class="hidden">
+                    <label for="kondisi_operasi_hand">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_hand" id="kondisi_operasi_hand">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_hand">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_hand" id="pemeliharaan_mesin_hand">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_hand">V:</label><br>
+                    <input type="number" name="V_hand" id="V_hand" step="0.1" min="0.1"><br>
+
+                    <label for="T1_hand">T1:</label><br>
+                    <input type="number" name="T1_hand" id="T1_hand" step="0.1" min="0.1"><br>
+
+                    <label for="T2_hand">T2:</label><br>
+                    <input type="number" name="T2_hand" id="T2_hand" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Mesin Bor -->
+                <div id="mesinBorForm" class="hidden">
+                    <label for="kondisi_operasi_bor">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_bor" id="kondisi_operasi_bor">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_bor">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_bor" id="pemeliharaan_mesin_bor">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="V_bor">V:</label><br>
+                    <input type="number" name="V_bor" id="V_bor" step="0.1" min="0.1"><br>
+
+                    <label for="Nb_bor">Nb:</label><br>
+                    <input type="number" name="Nb_bor" id="Nb_bor" step="0.1" min="0.1"><br>
+
+                    <label for="T1_bor">T1:</label><br>
+                    <input type="number" name="T1_bor" id="T1_bor" step="0.1" min="0.1"><br>
+
+                    <label for="T2_bor">T2:</label><br>
+                    <input type="number" name="T2_bor" id="T2_bor" step="0.1" min="0.1"><br>
+                </div>
+                <!--Fromulir Mesin Amplas Kayu-->
+                <div id="mesinAmplasKayuForm" class="hidden">
+                    <label for="kondisi_operasi_amplas">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_amplas" id="kondisi_operasi_amplas">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="pemeliharaan_mesin_amplas">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_amplas" id="pemeliharaan_mesin_amplas">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+                
+                    <label for="kapasitas_alat_amplas">Kapasitas Alat (m<sup>3</sup>):</label><br>
+                    <input type="number" name="kapasitas_alat_amplas" id="kapasitas_alat_amplas" step="0.1" min="0.1"><br>
+                </div>                
+                <!-- Formulir Stamper -->
+                <div id="stamperForm" class="hidden">
+                    <label for="kondisi_operasi_stamper">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_stamper" id="kondisi_operasi_stamper">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_stamper">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_stamper" id="pemeliharaan_mesin_stamper">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="bp_stamper">BP:</label><br>
+                    <input type="number" name="bp_stamper" id="bp_stamper" step="0.1" min="0.1"><br>
+
+                    <label for="L_stamper">L:</label><br>
+                    <input type="number" name="L_stamper" id="L_stamper" step="0.1" min="0.1"><br>
+                </div>
+
+                <!-- Formulir Lift Barang 6-10 lantai, Bm 1,0 ton -->
+                <div id="liftBarang1Form" class="hidden">
+                    <div id="options" class="hidden">
+                        <label for="perhitungan">Pilih Jenis Perhitungan:</label>
+                        <select id="perhitungan" name="perhitungan" onchange="toggleResults()">
+                            <option value="">--Pilih Perhitungan--</option>
+                            <option value="lokasi">Lokasi</option>
+                            <option value="lantai">Lantai</option>
+                        </select>
+                    </div>
+                    <label for="kondisi_operasi_lift1">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_lift1" id="kondisi_operasi_lift1">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_lift1">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_lift1" id="pemeliharaan_mesin_lift1">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_lift1">Cp:</label><br>
+                    <input type="number" name="Cp_lift1" id="Cp_lift1" step="0.1" min="0.1"><br>
+
+                    <label for="H_lift1">H:</label><br>
+                    <input type="number" name="H_lift1" id="H_lift1" step="0.1" min="0.1"><br>
+
+                    <label for="T1_lift1">T1:</label><br>
+                    <input type="number" name="T1_lift1" id="T1_lift1" step="0.1" min="0.1"><br>
+
+                    <label for="T3_lift1">T3:</label><br>
+                    <input type="number" name="T3_lift1" id="T3_lift1" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Lift Barang 10-24 lantai, Bm 1,0 ton -->
+                <div id="liftBarang2Form" class="hidden">
+                    <label for="kondisi_operasi_lift2">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_lift2" id="kondisi_operasi_lift2">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_lift2">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_lift2" id="pemeliharaan_mesin_lift2">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_lift2">Cp:</label><br>
+                    <input type="number" name="Cp_lift2" id="Cp_lift2" step="0.1" min="0.1"><br>
+
+                    <label for="H_lift2">H:</label><br>
+                    <input type="number" name="H_lift2" id="H_lift2" step="0.1" min="0.1"><br>
+
+                    <label for="T1_lift2">T1:</label><br>
+                    <input type="number" name="T1_lift2" id="T1_lift2" step="0.1" min="0.1"><br>
+
+                    <label for="T3_lift2">T3:</label><br>
+                    <input type="number" name="T3_lift2" id="T3_lift2" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Lift Barang 10-24 lantai, Bm 2,0 ton -->
+                <div id="liftBarang3Form" class="hidden">
+                    <label for="kondisi_operasi_lift3">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_lift3" id="kondisi_operasi_lift3">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_lift3">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_lift3" id="pemeliharaan_mesin_lift3">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="Cp_lift3">Cp:</label><br>
+                    <input type="number" name="Cp_lift3" id="Cp_lift3" step="0.1" min="0.1"><br>
+
+                    <label for="H_lift3">H:</label><br>
+                    <input type="number" name="H_lift3" id="H_lift3" step="0.1" min="0.1"><br>
+
+                    <label for="T1_lift3">T1:</label><br>
+                    <input type="number" name="T1_lift3" id="T1_lift3" step="0.1" min="0.1"><br>
+
+                    <label for="T3_lift3">T3:</label><br>
+                    <input type="number" name="T3_lift3" id="T3_lift3" step="0.1" min="0.1"><br>
+                </div>
+                <!-- Formulir Crane (Stationary Stand By) 40 Ton -->
+                <div id="crane1Form" class="hidden">
+                    <div id="craneOptions">
+                        <label for="opsi_crane1">Pilih Jenis Perhitungan:</label>
+                        <select id="opsi_crane1" name="opsi_crane1" onchange="toggleCraneFields()">
+                            <option value="">--Pilih Perhitungan--</option>
+                            <option value="lokasi">Lokasi</option>
+                            <option value="lantai">Lantai</option>
+                        </select>
+                    </div>
+                    
+                    <div id="craneFields" class="hidden">
+                        <label for="kondisi_operasi_crane1">Kondisi Operasi:</label><br>
+                        <select name="kondisi_operasi_crane1" id="kondisi_operasi_crane1">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="pemeliharaan_mesin_crane1">Pemeliharaan Mesin:</label><br>
+                        <select name="pemeliharaan_mesin_crane1" id="pemeliharaan_mesin_crane1">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="V_crane1">Volume:</label><br>
+                        <input type="number" name="V_crane1" id="V_crane1" step="0.1" min="0.1"><br>
+            
+                        <div id="lokasiFields" class="hidden">
+                            <label for="lokasi_crane1">Lokasi:</label><br>
+                            <select name="lokasi_crane1" id="lokasi_crane1">
+                                <option value="1">Baik sekali</option>
+                                <option value="2">Baik</option>
+                                <option value="3">Sedang</option>
+                            </select><br>
+                        </div>
+            
+                        <div id="lantaiFields" class="hidden">
+                            <label for="lantai_crane1">Lantai:</label><br>
+                            <input type="text" name="lantai_crane1" id="lantai_crane1"><br>
+                        </div>
+                    </div>
+                </div>
+                <!--Formulir Crane (Tower), T=10-20 m, Arm 18 m, Bm 1,5 ton -->
+                <div id="craneTower2Form" class="hidden">
+                    <div id="craneTowerOptions">
+                        <label for="opsi_crane2">Pilih Jenis Perhitungan:</label>
+                        <select id="opsi_crane2" name="opsi_crane2" onchange="toggleCraneFields2()">
+                            <option value="">--Pilih Perhitungan--</option>
+                            <option value="lokasi">Lokasi</option>
+                            <option value="lantai">Lantai</option>
+                        </select>
+                    </div>
+                    
+                    <div id="craneTowerFields" class="hidden">
+                        <label for="kondisi_operasi_crane2">Kondisi Operasi:</label><br>
+                        <select name="kondisi_operasi_crane2" id="kondisi_operasi_crane2">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="pemeliharaan_mesin_crane2">Pemeliharaan Mesin:</label><br>
+                        <select name="pemeliharaan_mesin_crane2" id="pemeliharaan_mesin_crane2">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="V_crane2">Volume:</label><br>
+                        <input type="number" name="V_crane2" id="V_crane2" step="0.1" min="0.1"><br>
+            
+                        <div id="lokasiCrane2Fields" class="hidden">
+                            <label for="lokasi_crane2">Lokasi:</label><br>
+                            <select name="lokasi_crane1" id="lokasi_crane1">
+                                <option value="1">Baik sekali</option>
+                                <option value="2">Baik</option>
+                                <option value="3">Sedang</option>
+                            </select><br>
+                        </div>
+            
+                        <div id="lantaiCrane2Fields" class="hidden">
+                            <label for="lantai_crane2">Lantai:</label><br>
+                            <input type="number" name="lantai_crane2" id="lantai_crane2" min="6" max="11"><br>
+                        </div>
+                    </div>
+                </div>
+                <!--Formulir Crane (Tower), T=10-20 m, Arm 18 m, Bm 1,5 ton-->
+                <div id="craneTower3Form" class="hidden">
+                    <div id="craneTowerOptions">
+                        <label for="opsi_crane3">Pilih Jenis Perhitungan:</label>
+                        <select id="opsi_crane3" name="opsi_crane3" onchange="toggleCraneFields3()">
+                            <option value="">--Pilih Perhitungan--</option>
+                            <option value="lokasi">Lokasi</option>
+                            <option value="lantai">Lantai</option>
+                        </select>
+                    </div>
+                    
+                    <div id="craneTowerFields" class="hidden">
+                        <label for="kondisi_operasi_crane3">Kondisi Operasi:</label><br>
+                        <select name="kondisi_operasi_crane3" id="kondisi_operasi_crane3">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="pemeliharaan_mesin_crane3">Pemeliharaan Mesin:</label><br>
+                        <select name="pemeliharaan_mesin_crane3" id="pemeliharaan_mesin_crane3">
+                            <option value="Baik sekali">Baik sekali</option>
+                            <option value="Baik">Baik</option>
+                            <option value="Sedang">Sedang</option>
+                            <option value="Buruk">Buruk</option>
+                            <option value="Buruk sekali">Buruk sekali</option>
+                        </select><br>
+            
+                        <label for="V_crane3">Volume:</label><br>
+                        <input type="number" name="V_crane3" id="V_crane3" step="0.1" min="0.1"><br>
+            
+                        <div id="lokasiCrane3Fields" class="hidden">
+                            <label for="lokasi_crane3">Lokasi:</label><br>
+                            <input type="text" name="lokasi_crane3" id="lokasi_crane3"><br>
+                        </div>
+            
+                        <div id="lantaiCrane3Fields" class="hidden">
+                            <label for="lantai_crane3">Lantai:</label><br>
+                            <input type="number" name="lantai_crane3" id="lantai_crane3" min="6" max="11"><br>
+                        </div>
+                    </div>
+                </div>
+                <!-- Formulir Flat Bed Truck -->
+                <div id="flat_bed_truckForm" class="hidden">
+                    <label for="kondisi_operasi_flat">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_flat" id="kondisi_operasi_flat">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_flat">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_flat" id="pemeliharaan_mesin_flat">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat">Kapasitas Alat (ton):</label><br>
+                    <input type="number" name="kapasitas_alat" id="kapasitas_alat" step="0.1" min="0.1"><br>
+
+                    <label for="jarak_lokasi">Jarak Lokasi (km):</label><br>
+                    <input type="number" name="jarak_lokasi" id="jarak_lokasi" step="0.1" min="0.1"><br>
+
+                    <label for="kecepatan_bermuatan">Kecepatan Bermuatan (km/jam):</label><br>
+                    <input type="number" name="kecepatan_bermuatan" id="kecepatan_bermuatan" step="0.1" min="0.1"><br>
+
+                    <label for="kecepatan_kosong">Kecepatan Kosong (km/jam):</label><br>
+                    <input type="number" name="kecepatan_kosong" id="kecepatan_kosong" step="0.1" min="0.1"><br>
+
+                    <label for="waktu_muat">Waktu Muat (menit):</label><br>
+                    <input type="number" name="waktu_muat" id="waktu_muat" step="0.1" min="0.1"><br>
+
+                    <label for="waktu_bongkar">Waktu Bongkar (menit):</label><br>
+                    <input type="number" name="waktu_bongkar" id="waktu_bongkar" step="0.1" min="0.1"><br>
+                </div>
+
+                <button type="submit" class="calculate-button">Hitung</button>
+            </form>
+        </div>    
+        <div class="result-container" id="resultContainer">
+            {% if hasil %}
+                <section id="resultContainer">
+                    <h2>Hasil Perhitungan {{ alat.capitalize() }}</h2>
+                    {% if 'error' in hasil %}
+                        <p class="error">{{ hasil['error'] }}</p>
+                    {% else %}
+                        <ul>
+                            {% for key, value in hasil.items() %}
+                                <li>{{ key }}: {{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </section>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
