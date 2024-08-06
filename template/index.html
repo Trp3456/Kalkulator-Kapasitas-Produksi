@@ -42,8 +42,8 @@
                         <option value="Sulit">Sulit</option>
                     </select><br>
 
-                    <label for="kapasitas_bucket">Kapasitas Bucket (m³):</label><br>
-                    <input type="number" name="kapasitas_bucket" id="kapasitas_bucket" step="0.1" min="0.1"><br>
+                    <label for="kapasitas_bucket">Kapasitas Bucket, V (m³):</label><br>
+                    <input type="number" name="kapasitas_bucket" id="kapasitas_bucket"  ><br>
 
                     <label for="sudut_putar">Sudut Putar:</label><br>
                     <select name="sudut_putar" id="sudut_putar">
@@ -79,7 +79,7 @@
                     </select><br>
                 
                     <label for="kapasitas_alat_amp">Kapasitas Alat AMP, Cp (ton/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_amp" id="kapasitas_alat_amp" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_amp" id="kapasitas_alat_amp"  ><br>
                 </div>
                 <!--Formulir Asphalt Finisher-->
                 <div id="asphaltFinisherForm" class="hidden">
@@ -101,17 +101,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
                 
-                    <label for="v_af">Kecepatan menghampar (km/jam):</label><br>
-                    <input type="number" name="v_af" id="v_af" step="0.1" min="0.1"><br>
+                    <label for="v_af">Kecepatan Menghampar, v (km/jam):</label><br>
+                    <input type="number" name="v_af" id="v_af"  ><br>
                 
                     <label for="b_af">Lebar Hamparan, b (m):</label><br>
-                    <input type="number" name="b_af" id="b_af" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_af" id="b_af"  ><br>
                 
                     <label for="D1_af">Berat Isi Campuran Beraspal, D1 (ton/m3):</label><br>
-                    <input type="number" name="D1_af" id="D1_af" step="0.1" min="0.1"><br>
+                    <input type="number" name="D1_af" id="D1_af"  ><br>
                 
                     <label for="t_af">Tebal, t (m)(maksimum 0,25 m):</label><br>
-                    <input type="number" name="t_af" id="t_af" step="0.05" min="0.1"><br>
+                    <input type="number" name="t_af" id="t_af"  ><br>
                 
                     <label for="satuan_af">Satuan Kapasitas Produksi:</label><br>
                     <select name="satuan_af" id="satuan_af">
@@ -142,10 +142,10 @@
                     </select><br>
                 
                     <label for="Pa_as">Kapasitas Pompa Aspal, Pa (m3/menit):</label><br>
-                    <input type="number" name="Pa_as" id="Pa_as" step="0.1" min="0.1"><br>
+                    <input type="number" name="Pa_as" id="Pa_as"  ><br>
                 
                     <label for="lt_as">Pemakaian Aspal setiap m2 luas permukaan, lt (m3/m2):</label><br>
-                    <input type="number" name="lt_as" id="lt_as" step="0.1" min="0.1"><br>
+                    <input type="number" name="lt_as" id="lt_as"  ><br>
                 
                     <label for="satuan_as">Satuan Kapasitas Produksi:</label><br>
                     <select name="satuan_as" id="satuan_as">
@@ -173,11 +173,11 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="banyak_pohon">Banyak Pohon:</label><br>
+                    <label for="banyak_pohon">Banyak Pohon ditebang dalam sehari, Cp:</label><br>
                     <input type="number" name="banyak_pohon" id="banyak_pohon" min="1"><br>
 
-                    <label for="jam_kerja">Jam Kerja (jam):</label><br>
-                    <input type="number" name="jam_kerja" id="jam_kerja" step="0.1" min="0.1" max="24"><br>
+                    <label for="jam_kerja">Jam Kerja per hari, T (jam):</label><br>
+                    <input type="number" name="jam_kerja" id="jam_kerja"   max="24"><br>
                 </div>
                 <!--Formulir Bulldozer-->
                 <div id="bulldozerForm" class="hidden">
@@ -198,19 +198,19 @@
                     </select><br>
                 
                     <label for="b_bull">Lebar Pisau Alat, b (m):</label><br>
-                    <input type="number" name="b_bull" id="b_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_bull" id="b_bull"  ><br>
                     
                     <label for="H_bull">Tinggi Pisau, H (m):</label><br>
-                    <input type="number" name="H_bull" id="H_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="H_bull" id="H_bull"  ><br>
                 
                     <label for="bo_bull">Lebar Overlap, bo (m):</label><br>
-                    <input type="number" name="bo_bull" id="bo_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="bo_bull" id="bo_bull"  ><br>
                 
                     <label for="W_bull">Lebar Area Pekerjaan, W (m):</label><br>
-                    <input type="number" name="W_bull" id="W_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_bull" id="W_bull"  ><br>
                 
                     <label for="n_bull">Jumlah Lintasan, n:</label><br>
-                    <input type="number" name="n_bull" id="n_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_bull" id="n_bull"  ><br>
                 
                     <label for="kemiringan_pisau_bull">Kemiringan Pisau:</label><br>
                     <select name="kondisi_kerja_bull" id="kondisi_kerja_bull">
@@ -220,13 +220,13 @@
                     </select><br>
 
                     <label for="vF_bull">Kecepatan Mendorong/Mengupas, vF (km/jam):</label><br>
-                    <input type="number" name="vF_bull" id="vF_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_bull" id="vF_bull"  ><br>
                 
                     <label for="vR_bull">Kecepatan Mundur Kembali, vR (km/jam):</label><br>
-                    <input type="number" name="vR_bull" id="vR_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_bull" id="vR_bull"  ><br>
                 
                     <label for="l_bull">Jarak Pengupasan, l (m):</label><br>
-                    <input type="number" name="l_bull" id="l_bull" step="0.1" min="0.1"><br>
+                    <input type="number" name="l_bull" id="l_bull"  ><br>
                 
                     <label for="jenis_transmisi_bull">Jenis Transmisi:</label><br>
                     <select name="jenis_transmisi_bull" id="jenis_transmisi_bull">
@@ -255,7 +255,7 @@
                     </select><br>
                 
                     <label for="kapasitas_alat_ac">Kapasitas Alat:</label><br>
-                    <input type="number" name="kapasitas_alat_ac" id="kapasitas_alat_ac" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_ac" id="kapasitas_alat_ac"  ><br>
 
                     <label for="penggunaan_ac">Penggunaan:</label><br>
                     <select name="penggunaan_ac" id="penggunaan_ac">
@@ -284,19 +284,19 @@
                     </select><br>
                 
                     <label for="Cp_cm">Kapasitas Mencampur, Cp (m3/jam):</label><br>
-                    <input type="number" name="Cp_cm" id="Cp_cm" step="0.1" min="0.1"><br>
+                    <input type="number" name="Cp_cm" id="Cp_cm"  ><br>
                 
                     <label for="T1_cm">Waktu Mengisi, T1 (menit):</label><br>
-                    <input type="number" name="T1_cm" id="T1_cm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_cm" id="T1_cm"  ><br>
                 
                     <label for="T2_cm">Waktu Mencampur, T2 (menit):</label><br>
-                    <input type="number" name="T2_cm" id="T2_cm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_cm" id="T2_cm"  ><br>
                 
                     <label for="T3_cm">Waktu Menuang, T3 (menit):</label><br>
-                    <input type="number" name="T3_cm" id="T3_cm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_cm" id="T3_cm"  ><br>
                 
                     <label for="T4_cm">Waktu Menunggu, T4 (menit):</label><br>
-                    <input type="number" name="T4_cm" id="T4_cm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_cm" id="T4_cm"  ><br>
                 </div>
                 <!--Fromulir Crane (10-15 ton)-->
                 <div id="crane10Form" class="hidden">
@@ -319,13 +319,13 @@
                     </select><br>
                 
                     <label for="V_ct">Kapasitas Angkat Crane, V (n buah):</label><br>
-                    <input type="number" name="V_ct" id="V_ct" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_ct" id="V_ct"  ><br>
                 
                     <label for="T1_ct">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
-                    <input type="number" name="T1_ct" id="T1_ct" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_ct" id="T1_ct"  ><br>
                 
                     <label for="T2_ct">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
-                    <input type="number" name="T2_ct" id="T2_ct" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_ct" id="T2_ct"  ><br>
                 </div>
                 <!--Formulir Crane on Track (Crawler Crane) 75 ton-->
                 <div id="craneOnTrackForm" class="hidden">
@@ -348,13 +348,13 @@
                     </select><br>
                 
                     <label for="V_cot">Kapasitas Angkat Crane, V (n buah):</label><br>
-                    <input type="number" name="V_cot" id="V_cot" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_cot" id="V_cot"  ><br>
 
                     <label for="T1_cot">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
-                    <input type="number" name="T1_cot" id="T1_cot" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_cot" id="T1_cot"  ><br>
 
                     <label for="T2_cot">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
-                    <input type="number" name="T2_cot" id="T2_cot" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_cot" id="T2_cot"  ><br>
 
                 </div>                
                 <!--Formulir Crane on Track 75-100 ton-->
@@ -378,13 +378,13 @@
                     </select><br>
                 
                     <label for="V_cot2">Kapasitas Angkat Crane, V (n buah):</label><br>
-                    <input type="number" name="V_cot2" id="V_cot2" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_cot2" id="V_cot2"  ><br>
 
                     <label for="T1_cot2">Waktu mengikat, menambatkan, menaikan, membawa, menurunkan, T1 (menit):</label><br>
-                    <input type="number" name="T1_cot2" id="T1_cot2" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_cot2" id="T1_cot2"  ><br>
 
                     <label for="T2_cot2">Waktu menggeser, membongkar ikatan, kembali ke awal, T2 (menit):</label><br>
-                    <input type="number" name="T2_cot2" id="T2_cot2" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_cot2" id="T2_cot2"  ><br>
 
                 </div>
                 <!-- Formulir Dump Truck -->
@@ -405,19 +405,19 @@
                     </select><br>
 
                     <label for="V_dump">Kapasitas Bak, Cp (ton):</label><br>
-                    <input type="number" name="V_dump" id="V_dump" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_dump" id="V_dump"  ><br>
 
                     <label for="BiL_dump">Berat Isi Material, BiL:</label><br>
-                    <input type="number" name="BiL_dump" id="BiL_dump" step="0.1" min="0.1"><br>
+                    <input type="number" name="BiL_dump" id="BiL_dump"  ><br>
 
                     <label for="L_dump">Jarak Lokasi, L (km):</label><br>
-                    <input type="number" name="L_dump" id="L_dump" step="0.1" min="0.1"><br>
+                    <input type="number" name="L_dump" id="L_dump"  ><br>
 
                     <label for="T1_dump">Waktu Mengisi, T1 (menit):</label><br>
-                    <input type="number" name="T1_dump" id="T1_dump" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_dump" id="T1_dump"  ><br>
 
                     <label for="T4_dump">Waktu Lain-lain, T4 (menit):</label><br>
-                    <input type="number" name="T4_dump" id="T4_dump" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_dump" id="T4_dump"  ><br>
                 </div>
                 <!-- Formulir Truck Semi Trailer, 15 ton -->
                 <div id="truckSemiTrailerForm" class="hidden">
@@ -437,20 +437,58 @@
                     </select><br>
 
                     <label for="V_tst">Kapasitas Bak, Cp (ton):</label><br>
-                    <input type="number" name="V_tst" id="V_tst" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_tst" id="V_tst"  ><br>
 
                     <label for="BiL_tst">Berat Isi Material, BiL:</label><br>
-                    <input type="number" name="BiL_tst" id="BiL_tst" step="0.1" min="0.1"><br>
+                    <input type="number" name="BiL_tst" id="BiL_tst"  ><br>
 
                     <label for="L_tst">Jarak Lokasi, L (km):</label><br>
-                    <input type="number" name="L_tst" id="L_tst" step="0.1" min="0.1"><br>
+                    <input type="number" name="L_tst" id="L_tst"  ><br>
 
                     <label for="T1_tst">Waktu Mengisi, T1 (menit):</label><br>
-                    <input type="number" name="T1_tst" id="T1_tst" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_tst" id="T1_tst"  ><br>
 
                     <label for="T4_tst">Waktu Lain-lain, T4 (menit):</label><br>
-                    <input type="number" name="T4_tst" id="T4_tst" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_tst" id="T4_tst"  ><br>
 
+                </div>
+                <!--Formulir Flatbed Truck-->
+                <div id="flat_bed_truckForm" class="hidden">
+                    <label for="kondisi_operasi_flat">Kondisi Operasi:</label><br>
+                    <select name="kondisi_operasi_flat" id="kondisi_operasi_flat">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="pemeliharaan_mesin_flat">Pemeliharaan Mesin:</label><br>
+                    <select name="pemeliharaan_mesin_flat" id="pemeliharaan_mesin_flat">
+                        <option value="Baik sekali">Baik sekali</option>
+                        <option value="Baik">Baik</option>
+                        <option value="Sedang">Sedang</option>
+                        <option value="Buruk">Buruk</option>
+                        <option value="Buruk sekali">Buruk sekali</option>
+                    </select><br>
+
+                    <label for="kapasitas_alat">Kapasitas Alat, Cp (ton):</label><br>
+                    <input type="number" name="kapasitas_alat" id="kapasitas_alat"  ><br>
+
+                    <label for="jarak_lokasi">Jarak Lokasi (km):</label><br>
+                    <input type="number" name="jarak_lokasi" id="jarak_lokasi"  ><br>
+
+                    <label for="kecepatan_bermuatan">Kecepatan Bermuatan (km/jam):</label><br>
+                    <input type="number" name="kecepatan_bermuatan" id="kecepatan_bermuatan"  ><br>
+
+                    <label for="kecepatan_kosong">Kecepatan Kosong (km/jam):</label><br>
+                    <input type="number" name="kecepatan_kosong" id="kecepatan_kosong"  ><br>
+
+                    <label for="waktu_muat">Waktu Muat (menit):</label><br>
+                    <input type="number" name="waktu_muat" id="waktu_muat"  ><br>
+
+                    <label for="waktu_bongkar">Waktu Bongkar (menit):</label><br>
+                    <input type="number" name="waktu_bongkar" id="waktu_bongkar"  ><br>
                 </div>
                 <!-- Formulir Generating Set (Genset) -->
                 <div id="generatingSetForm" class="hidden">
@@ -473,7 +511,7 @@
                     </select><br>
 
                     <label for="V_genset">Kapasitas Genset, V (kW/jam):</label><br>
-                    <input type="number" name="V_genset" id="V_genset" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_genset" id="V_genset"  ><br>
                 </div>
                 <!-- Formulir Motor Grader -->
                 <div id="motorGraderForm" class="hidden">
@@ -494,7 +532,7 @@
                     </select><br>
 
                     <label for="Lh_motor">Panjang Hamparan, Lh (m):</label><br>
-                    <input type="number" name="Lh_motor" id="Lh_motor" step="0.1" min="0.1"><br>
+                    <input type="number" name="Lh_motor" id="Lh_motor"  ><br>
 
                     <label for="sudut_pisau_motor">Sudut Pisau (derajat):</label><br>
                     <select name="sudut_pisau_motor" id="sudut_pisau_motor">
@@ -504,19 +542,19 @@
                     </select><br>
 
                     <label for="b_motor">Panjang Pisau, b (m):</label><br>
-                    <input type="number" name="b_motor" id="b_motor" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_motor" id="b_motor"  ><br>
 
                     <label for="bo_motor">Lebar Overlap, bo (m):</label><br>
-                    <input type="number" name="bo_motor" id="bo_motor" step="0.1" min="0.1"><br>
+                    <input type="number" name="bo_motor" id="bo_motor"  ><br>
 
                     <label for="n_motor">Jumlah Lintasan, n (2-4 lintasan):</label><br>
-                    <input type="number" name="n_motor" id="n_motor" step="0.1" min="2" max="4"><br>
+                    <input type="number" name="n_motor" id="n_motor"  min="2" max="4"><br>
 
                     <label for="W_motor">Lebar Area Pekerjaan, W (m):</label><br>
-                    <input type="number" name="W_motor" id="W_motor" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_motor" id="W_motor"  ><br>
 
                     <label for="T2_motor">Waktu Lain-lain, T2 (menit):</label><br>
-                    <input type="number" name="T2_motor" id="T2_motor" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_motor" id="T2_motor"  ><br>
                 </div>
                 <!-- Formulir Track Loader -->
                 <div id="trackLoaderForm" class="hidden">
@@ -551,7 +589,7 @@
                     </select><br>
 
                     <label for="kapasitas_bucket_tloader">Kapasitas Bucket, V (m3):</label><br>
-                    <input type="number" name="kapasitas_bucket_tloader" id="kapasitas_bucket_tloader" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_bucket_tloader" id="kapasitas_bucket_tloader"  ><br>
 
                     <label for="jarak_pergerakan_tloader">Jarak Pergerakan (dekat/jauh):</label><br>
                     <select name="jarak_pergerakan_tloader" id="jarak_pergerakan_tloader">
@@ -560,10 +598,10 @@
                     </select><br>
 
                     <label for="L_tloader">Jarak Pemindahan, L (km):</label><br>
-                    <input type="number" name="L_tloader" id="L_tloader" step="0.1" min="0.1"><br>
+                    <input type="number" name="L_tloader" id="L_tloader"  ><br>
 
                     <label for="Z_tloader"> Waktu pasti, Z (0,6-0,75 menit):</label><br>
-                    <input type="number" name="Z_tloader" id="Z_tloader" step="0.1" min="0.6"><br>
+                    <input type="number" name="Z_tloader" id="Z_tloader"  min="0.6"><br>
                 </div>
                 <!-- Formulir Wheel Loader -->
                 <div id="wheelLoaderForm" class="hidden">
@@ -598,7 +636,7 @@
                     </select><br>
 
                     <label for="kapasitas_bucket_wloader">Kapasitas Bucket, V (m3):</label><br>
-                    <input type="number" name="kapasitas_bucket_wloader" id="kapasitas_bucket_wloader" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_bucket_wloader" id="kapasitas_bucket_wloader"  ><br>
 
                     <label for="jarak_pergerakan_wloader">Jarak Pergerakan (dekat/jauh):</label><br>
                     <select name="jarak_pergerakan_wloader" id="jarak_pergerakan_wloader">
@@ -607,10 +645,10 @@
                     </select><br>
 
                     <label for="L_wloader">Jarak Pemindahan, L (km):</label><br>
-                    <input type="number" name="L_wloader" id="L_wloader" step="0.1" min="0.1"><br>
+                    <input type="number" name="L_wloader" id="L_wloader"  ><br>
 
                     <label for="Z_wloader">Waktu Pasti, Z (0,6-0,75 menit):</label><br>
-                    <input type="number" name="Z_wloader" id="Z_wloader" step="0.1" min="0.6"><br>
+                    <input type="number" name="Z_wloader" id="Z_wloader"  min="0.6"><br>
                 </div>
                 <!-- Formulir Three Wheel Loader (TWR/Macadam Roller) -->
                 <div id="threeWheelLoaderForm" class="hidden">
@@ -632,23 +670,22 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="v_twr">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_twr" id="v_twr" step="0.1" min="0.1"><br>
+                    <label for="v_twr">Kecepatan Pemadatan, v (km/jam): 2</label><br>
+                    
 
                     <label for="t_twr">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_twr" id="t_twr" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_twr" id="t_twr"  ><br>
 
                     <label for="b_twr">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_twr" id="b_twr" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_twr" id="b_twr"  ><br>
 
-                    <label for="bo_twr">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_twr" id="bo_twr" step="0.1" min="0.1"><br>
-
+                    <label for="bo_twr">Lebar Overlap, bo (0,2 m): 0.2</label><br>
+                    
                     <label for="n_twr">Jumlah Lintasann, n (6 atau 8):</label><br>
-                    <input type="number" name="n_twr" id="n_twr" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_twr" id="n_twr"  ><br>
 
                     <label for="W_twr">Lebar Area Pemadatan W (m):</label><br>
-                    <input type="number" name="W_twr" id="W_twr" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_twr" id="W_twr"  ><br>
                 </div>
                 <!-- Formulir Tandem Roller -->
                 <div id="tandemRollerForm" class="hidden">
@@ -670,24 +707,25 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="v_tandem">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_tandem" id="v_tandem" step="0.1" min="0.1"><br>
-
-                    <label for="t_tandem">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_tandem" id="t_tandem" step="0.1" min="0.1"><br>
-
                     <label for="b_tandem">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_tandem" id="b_tandem" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_tandem" id="b_tandem"  ><br>
 
                     <label for="bo_tandem">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_tandem" id="bo_tandem" step="0.1" min="0.1"><br>
-
-                    <label for="n_tandem">Jumlah Lintasan, n (6 atau 8):</label><br>
-                    <input type="number" name="n_tandem" id="n_tandem" step="0.1" min="0.1"><br>
+                    <input type="number" name="bo_tandem" id="bo_tandem"  ><br>
 
                     <label for="W_tandem">Lebar Area Pemadatan, W (m):</label><br>
-                    <input type="number" name="W_tandem" id="W_tandem" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_tandem" id="W_tandem"  ><br>
 
+                    <label for="v_tandem">Kecepatan Pemadatan, v (km/jam):</label><br>
+                    <input type="number" name="v_tandem" id="v_tandem"  ><br>
+
+                    <label for="t_tandem">Tebal Lapisan, t (m):</label><br>
+                    <input type="number" name="t_tandem" id="t_tandem"  ><br>
+
+                    <label for="n_tandem">Jumlah Lintasan, n (6 atau 8):</label><br>
+                    <input type="number" name="n_tandem" id="n_tandem"  ><br>
+
+                    
                 </div>
                 <!-- Formulir Pneumatic Tire Roller -->
                 <div id="pneumaticTireRollerForm" class="hidden">
@@ -710,22 +748,22 @@
                     </select><br>
 
                     <label for="v_pneumatic">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_pneumatic" id="v_pneumatic" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_pneumatic" id="v_pneumatic"  ><br>
 
                     <label for="t_pneumatic">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_pneumatic" id="t_pneumatic" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_pneumatic" id="t_pneumatic"  ><br>
 
                     <label for="b_pneumatic">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_pneumatic" id="b_pneumatic" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_pneumatic" id="b_pneumatic"  ><br>
 
-                    <label for="bo_pneumatic">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_pneumatic" id="bo_pneumatic" step="0.1" min="0.1"><br>
+                    <label for="bo_pneumatic">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_pneumatic" id="bo_pneumatic"  ><br>
 
                     <label for="n_pneumatic">Jumlah Lintasan, n (antara 6 dan 10):</label><br>
-                    <input type="number" name="n_pneumatic" id="n_pneumatic" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_pneumatic" id="n_pneumatic"  ><br>
 
                     <label for="W_pneumatic">Lebar Area Pemadatan, W (m):</label><br>
-                    <input type="number" name="W_pneumatic" id="W_pneumatic" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_pneumatic" id="W_pneumatic"  ><br>
 
                 </div>
                 <!-- Formulir Sheepsfoot Roller -->
@@ -749,22 +787,22 @@
                     </select><br>
 
                     <label for="v_sheep">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_sheep" id="v_sheep" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_sheep" id="v_sheep"  ><br>
 
                     <label for="t_sheep">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_sheep" id="t_sheep" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_sheep" id="t_sheep"  ><br>
 
                     <label for="b_sheep">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_sheep" id="b_sheep" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_sheep" id="b_sheep"  ><br>
 
-                    <label for="bo_sheep">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_sheep" id="bo_sheep" step="0.1" min="0.1"><br>
+                    <label for="bo_sheep">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_sheep" id="bo_sheep"  ><br>
 
                     <label for="n_sheep">Jumlah Lintasan, n (6 atau 8):</label><br>
-                    <input type="number" name="n_sheep" id="n_sheep" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_sheep" id="n_sheep"  ><br>
 
                     <label for="W_sheep">Lebar Area Pemadatan, W (m):</label><br>
-                    <input type="number" name="W_sheep" id="W_sheep" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_sheep" id="W_sheep"  ><br>
 
                 </div>
                 <!-- Formulir Vibratory Roller -->
@@ -788,22 +826,22 @@
                     </select><br>
 
                     <label for="v_vr">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_vr" id="v_vr" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_vr" id="v_vr"  ><br>
                     
                     <label for="t_vr">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_vr" id="t_vr" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_vr" id="t_vr"  ><br>
                     
                     <label for="b_vr">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_vr" id="b_vr" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_vr" id="b_vr"  ><br>
                     
-                    <label for="bo_vr">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_vr" id="bo_vr" step="0.1" min="0.1"><br>
+                    <label for="bo_vr">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_vr" id="bo_vr"  ><br>
                     
                     <label for="n_vr">Jumlah Lintasan, n (4 sampai 12):</label><br>
-                    <input type="number" name="n_vr" id="n_vr" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_vr" id="n_vr"  ><br>
                     
                     <label for="W_vr">Lebar Area Pemadatan, W (m):</label><br>
-                    <input type="number" name="W_vr" id="W_vr" step="0.1" min="0.1"><br>
+                    <input type="number" name="W_vr" id="W_vr"  ><br>
                     
                 </div>
                 <!-- Formulir Concrete Vibrator -->
@@ -827,7 +865,7 @@
                     </select><br>
 
                     <label for="kapasitas_alat_cv">Kapasitas Alat, V (m3/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_cv" id="kapasitas_alat_cv" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_cv" id="kapasitas_alat_cv"  ><br>
                 </div>
                 <!-- Formulir Water Pump -->
                 <div id="waterPumpForm" class="hidden">
@@ -850,7 +888,7 @@
                     </select><br>
 
                     <label for="kapasitas_alat_pump">Kapasitas Alat, V (m3/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_pump" id="kapasitas_alat_pump" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_pump" id="kapasitas_alat_pump"  ><br>
                 </div>
                 <!-- Formulir Jack Hammer -->
                 <div id="jackHammerForm" class="hidden">
@@ -873,7 +911,7 @@
                     </select><br>
 
                     <label for="kapasitas_alat_jack">Kapasitas Alat, V (m3/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_jack" id="kapasitas_alat_jack" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_jack" id="kapasitas_alat_jack"  ><br>
                 </div>
                 <!-- Formulir Blending Equipment -->
                 <div id="blendingEquipmentForm" class="hidden">
@@ -896,7 +934,7 @@
                     </select><br>
 
                     <label for="kapasitas_alat_blend">Kapasitas Alat, V (m3/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_blend" id="kapasitas_alat_blend" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_blend" id="kapasitas_alat_blend"  ><br>
                 </div>
                 <!-- Formulir Asphalt Liquid Mixer -->
                 <div id="asphaltLiquidMixerForm" class="hidden">
@@ -919,7 +957,7 @@
                     </select><br>
 
                     <label for="kapasitas_alat_alm">Kapasitas Alat, V (m3/jam):</label><br>
-                    <input type="number" name="kapasitas_alat_alm" id="kapasitas_alat_alm" step="0.1" min="0.1"><br>
+                    <input type="number" name="kapasitas_alat_alm" id="kapasitas_alat_alm"  ><br>
                 </div>
                 <!-- Formulir Pedestrian Roller -->
                 <div id="pedestrianRollerForm" class="hidden">
@@ -941,20 +979,20 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
+                    <label for="b_ped">Lebar Roda Pemadat, b (m):</label><br>
+                    <input type="number" name="b_ped" id="b_ped"  ><br>
+
+                    <label for="bo_ped">Lebar Overlap, bo (m):</label><br>
+                    <input type="number" name="bo_ped" id="bo_ped"  ><br>
+
                     <label for="v_ped">Kecepatan Pemadatan, v (km/jam):</label><br>
-                    <input type="number" name="v_ped" id="v_ped" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_ped" id="v_ped"  ><br>
 
                     <label for="t_ped">Tebal Lapisan, t (m):</label><br>
-                    <input type="number" name="t_ped" id="t_ped" step="0.1" min="0.1"><br>
-
-                    <label for="b_ped">Lebar Roda Pemadat, b (m):</label><br>
-                    <input type="number" name="b_ped" id="b_ped" step="0.1" min="0.1"><br>
-
-                    <label for="bo_ped">Lebar Overlap, bo (0,2 m):</label><br>
-                    <input type="number" name="bo_ped" id="bo_ped" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_ped" id="t_ped"  ><br>
 
                     <label for="n_ped">Jumlah Lintasan, n (4 sampai 12):</label><br>
-                    <input type="number" name="n_ped" id="n_ped" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_ped" id="n_ped"  ><br>
 
                 </div>
                 <!-- Formulir Tamper -->
@@ -978,19 +1016,19 @@
                     </select><br>
 
                     <label for="v_tamper">Kecepatan Lintasan Pemadatan, v (1 km/jam):</label><br>
-                    <input type="number" name="v_tamper" id="v_tamper" step="0.1" min="1" max="1"><br>
+                    <input type="number" name="v_tamper" id="v_tamper"  min="1" max="1"><br>
 
                     <label for="lbr_tamper">Lebar Telapak, lbr (m):</label><br>
-                    <input type="number" name="lbr_tamper" id="lbr_tamper" step="0.1" min="0.1"><br>
+                    <input type="number" name="lbr_tamper" id="lbr_tamper"  ><br>
 
                     <label for="t_tamper">Tebal Pemadatan, t (m):</label><br>
-                    <input type="number" name="t_tamper" id="t_tamper" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_tamper" id="t_tamper"  ><br>
 
-                    <label for="N_tamper">Jumlah Lapisanm N:</label><br>
-                    <input type="number" name="N_tamper" id="N_tamper" step="0.1" min="0.1"><br>
+                    <label for="N_tamper">Jumlah Lapisan, N:</label><br>
+                    <input type="number" name="N_tamper" id="N_tamper"  ><br>
 
                     <label for="n_tamper">Banyak Tumbukan, n:</label><br>
-                    <input type="number" name="n_tamper" id="n_tamper" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_tamper" id="n_tamper"  ><br>
                 </div>
                 <!-- Formulir Vibrating Rammer -->
                 <div id="vibratingRammerForm" class="hidden">
@@ -1013,19 +1051,19 @@
                     </select><br>
 
                     <label for="v_vib">Kecepatan Lintasan Pemadatan, v (1 km/jam):</label><br>
-                    <input type="number" name="v_vib" id="v_vib" step="0.1" min="1" max="1"><br>
+                    <input type="number" name="v_vib" id="v_vib"  min="1" max="1"><br>
 
                     <label for="lbr_vib">Lebar Telapak, lbr (m):</label><br>
-                    <input type="number" name="lbr_vib" id="lbr_vib" step="0.1" min="0.1"><br>
+                    <input type="number" name="lbr_vib" id="lbr_vib"  ><br>
 
                     <label for="t_vib">Tebal Pemadatan, t (m):</label><br>
-                    <input type="number" name="t_vib" id="t_vib" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_vib" id="t_vib"  ><br>
 
                     <label for="N_vib">Jumlah Lapisan, N:</label><br>
-                    <input type="number" name="N_vib" id="N_vib" step="0.1" min="0.1"><br>
+                    <input type="number" name="N_vib" id="N_vib"  ><br>
 
                     <label for="n_vib">Banyak Tumbukan, n:</label><br>
-                    <input type="number" name="n_vib" id="n_vib" step="0.1" min="0.1"><br>
+                    <input type="number" name="n_vib" id="n_vib"  ><br>
 
                 </div>
                 <!-- Formulir Pulvi Mixer (Soil Stabilizer) -->
@@ -1048,14 +1086,14 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="v_pulvi">Keceoatan Rata-rata, v (km/jam):</label><br>
-                    <input type="number" name="v_pulvi" id="v_pulvi" step="0.1" min="0.1"><br>
+                    <label for="v_pulvi">Kecepatan Rata-rata, v (km/jam):</label><br>
+                    <input type="number" name="v_pulvi" id="v_pulvi"  ><br>
 
                     <label for="b_pulvi">Lebar Pemotongan, b (m):</label><br>
-                    <input type="number" name="b_pulvi" id="b_pulvi" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_pulvi" id="b_pulvi"  ><br>
 
                     <label for="t_pulvi">Tebal Pemadatan, t (m):</label><br>
-                    <input type="number" name="t_pulvi" id="t_pulvi" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_pulvi" id="t_pulvi"  ><br>
                 </div>
                 <!-- Formulir Concrete Pump -->
                 <div id="concretePumpForm" class="hidden">
@@ -1083,19 +1121,19 @@
                     </select><br>
 
                     <label for="V_pdh">Kapasitas Alat, V (titik):</label><br>
-                    <input type="number" name="V_pdh" id="V_pdh" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_pdh" id="V_pdh"  ><br>
 
                     <label for="p_pdh">Panjang tiap pancang tertanam dalam satu titik, p (m):</label><br>
-                    <input type="number" name="p_pdh" id="p_pdh" step="0.1" min="0.1"><br>
+                    <input type="number" name="p_pdh" id="p_pdh"  ><br>
 
                     <label for="T1_pdh">Lama waktu menggeser dan menyetel tiang, T1 (30-40 menit):</label><br>
-                    <input type="number" name="T1_pdh" id="T1_pdh" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_pdh" id="T1_pdh"  ><br>
 
                     <label for="T2_pdh">Lama waktu pemancangan sampai kalendering, T2 (menit):</label><br>
-                    <input type="number" name="T2_pdh" id="T2_pdh" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_pdh" id="T2_pdh"  ><br>
 
                     <label for="T3_pdh">Lama waktu penyambungan tiang, T3 (20-40 menit):</label><br>
-                    <input type="number" name="T3_pdh" id="T3_pdh" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_pdh" id="T3_pdh"  ><br>
                 </div>
                 <!-- Formulir Welding Set -->
                 <div id="weldingSetForm" class="hidden">
@@ -1118,10 +1156,10 @@
                     </select><br>
 
                     <label for="jarak_antar_sambungan_weld">Jarak Antar Sambungan, S (m) :</label><br>
-                    <input type="number" name="jarak_antar_sambungan_weld" id="jarak_antar_sambungan_weld" step="0.1" min="0.1"><br>
+                    <input type="number" name="jarak_antar_sambungan_weld" id="jarak_antar_sambungan_weld"  ><br>
 
                     <label for="T_weld">Waktu Setiap Penyambungan, T (menit):</label><br>
-                    <input type="number" name="T_weld" id="T_weld" step="0.1" min="0.1"><br>
+                    <input type="number" name="T_weld" id="T_weld"  ><br>
                 </div>
                 <!-- Formulir Bored Pile Drilling Machine -->
                 <div id="boredPileDrillingForm" class="hidden">
@@ -1144,37 +1182,37 @@
                     </select><br>
 
                     <label for="V_bored">Kapasitas Alat, V (titik):</label><br>
-                    <input type="number" name="V_bored" id="V_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_bored" id="V_bored"  ><br>
 
                     <label for="p_bored">Kedalaman Pemboran, p (m):</label><br>
-                    <input type="number" name="p_bored" id="p_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="p_bored" id="p_bored"  ><br>
 
                     <label for="T1_bored">Waktu check titik bore, T1 (menit):</label><br>
-                    <input type="number" name="T1_bored" id="T1_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_bored" id="T1_bored"  ><br>
 
                     <label for="T2_bored">Waktu persiapan alat T2, (menit):</label><br>
-                    <input type="number" name="T2_bored" id="T2_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_bored" id="T2_bored"  ><br>
 
                     <label for="T3_bored">Waktu check ketegakan alat, T3 (menit):</label><br>
-                    <input type="number" name="T3_bored" id="T3_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_bored" id="T3_bored"  ><br>
 
                     <label for="T4_bored">Waktu unyuk pasang casing, T4 (menit):</label><br>
-                    <input type="number" name="T4_bored" id="T4_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_bored" id="T4_bored"  ><br>
 
                     <label for="T5_bored">Waktu untuk pengeboran, T5 (menit):</label><br>
-                    <input type="number" name="T5_bored" id="T5_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T5_bored" id="T5_bored"  ><br>
 
                     <label for="T6_bored">Waktu untuk cleaning, T6 (menit):</label><br>
-                    <input type="number" name="T6_bored" id="T6_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T6_bored" id="T6_bored"  ><br>
 
                     <label for="T7_bored">Waktu untuk instalasi besi, T7 (menit):</label><br>
-                    <input type="number" name="T7_bored" id="T7_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T7_bored" id="T7_bored"  ><br>
 
                     <label for="T8_bored">Waktu untuk pengecoran, T8 (menit):</label><br>
-                    <input type="number" name="T8_bored" id="T8_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T8_bored" id="T8_bored"  ><br>
 
                     <label for="T9_bored">Waktu untuk tarik casing, T9 (menit):</label><br>
-                    <input type="number" name="T9_bored" id="T9_bored" step="0.1" min="0.1"><br>
+                    <input type="number" name="T9_bored" id="T9_bored"  ><br>
                 </div>
                 <!-- Formulir Road Milling Machine -->
                 <div id="roadMillingForm" class="hidden">
@@ -1197,13 +1235,13 @@
                     </select><br>
 
                     <label for="v_mill">Kecepatan Pembongkaran , v (m/menit):</label><br>
-                    <input type="number" name="v_mill" id="v_mill" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_mill" id="v_mill"  ><br>
 
                     <label for="b_mill">Kapasitas Lebar Pembongkaran, b (m):</label><br>
-                    <input type="number" name="b_mill" id="b_mill" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_mill" id="b_mill"  ><br>
 
                     <label for="t_mill">Tebal Pembongkaran, t (m):</label><br>
-                    <input type="number" name="t_mill" id="t_mill" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_mill" id="t_mill"  ><br>
                 </div>
                 <!-- Formulir Rock Drill Breaker -->
                 <div id="rockDrillBreakerForm" class="hidden">
@@ -1226,19 +1264,19 @@
                     </select><br>
 
                     <label for="V_rock">Kapasitas Breaker, V (m3):</label><br>
-                    <input type="number" name="V_rock" id="V_rock" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_rock" id="V_rock"  ><br>
 
                     <label for="D_rock">Diameter Breaker, D (m):</label><br>
-                    <input type="number" name="D_rock" id="D_rock" step="0.1" min="0.1"><br>
+                    <input type="number" name="D_rock" id="D_rock"  ><br>
 
                     <label for="Faktor_breaker_rock">Faktor Breaker, Fb:</label><br>
-                    <input type="number" name="Faktor_breaker_rock" id="Faktor_breaker_rock" step="0.1" min="0.1"><br>
+                    <input type="number" name="Faktor_breaker_rock" id="Faktor_breaker_rock"  ><br>
 
                     <label for="T1_rock">Waktu Memahat, T1 (menit):</label><br>
-                    <input type="number" name="T1_rock" id="T1_rock" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_rock" id="T1_rock"  ><br>
 
                     <label for="T2_rock">Waktu Lain-lain, T2 (menit):</label><br>
-                    <input type="number" name="T2_rock" id="T2_rock" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_rock" id="T2_rock"  ><br>
                 </div>
                 <!-- Formulir Cold Recycler -->
                 <div id="coldRecyclerForm" class="hidden">
@@ -1261,13 +1299,13 @@
                     </select><br>
 
                     <label for="v_cold">Kecepatan Pengupasan, v (m/menit):</label><br>
-                    <input type="number" name="v_cold" id="v_cold" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_cold" id="v_cold"  ><br>
 
                     <label for="b_cold">Lebar Pengupasan, b (m):</label><br>
-                    <input type="number" name="b_cold" id="b_cold" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_cold" id="b_cold"  ><br>
 
                     <label for="t_cold">Tebal Galian, t (m):</label><br>
-                    <input type="number" name="t_cold" id="t_cold" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_cold" id="t_cold"  ><br>
 
                     <label for="satuan_cold">Satuan Kapasitas Produksi:</label><br>
                     <select name="pemeliharaan_mesin_cold" id="pemeliharaan_mesin_cold">
@@ -1296,13 +1334,13 @@
                     </select><br>
 
                     <label for="v_hot">Kecepatan Pengupasan, v (m/menit):</label><br>
-                    <input type="number" name="v_hot" id="v_hot" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_hot" id="v_hot"  ><br>
 
                     <label for="b_hot">Lebar Pengupasan, b (m):</label><br>
-                    <input type="number" name="b_hot" id="b_hot" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_hot" id="b_hot"  ><br>
 
                     <label for="t_hot">Tebal Galian, t (m):</label><br>
-                    <input type="number" name="t_hot" id="t_hot" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_hot" id="t_hot"  ><br>
 
                     <label for="satuan_hot">Satuan Kapasitas Produksi:</label><br>
                     <select name="satuan_hot" id="satuan_hot">
@@ -1332,16 +1370,16 @@
                     </select><br>
 
                     <label for="Cp_agg">Kapasitas Bak, Cp (ton):</label><br>
-                    <input type="number" name="Cp_agg" id="Cp_agg" step="0.1" min="0.1"><br>
+                    <input type="number" name="Cp_agg" id="Cp_agg"  ><br>
 
                     <label for="b_agg">Lebar Penghamparan, b (m):</label><br>
-                    <input type="number" name="b_agg" id="b_agg" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_agg" id="b_agg"  ><br>
 
                     <label for="t_agg">Tebal Kedalaman Pengupasan, t (m):</label><br>
-                    <input type="number" name="t_agg" id="t_agg" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_agg" id="t_agg"  ><br>
 
                     <label for="v_agg">Kecepatan Rata-rata, v (km/jam):</label><br>
-                    <input type="number" name="v_agg" id="v_agg" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_agg" id="v_agg"  ><br>
                 </div>
                 <!-- Formulir Asphalt Distributor -->
                 <div id="asphaltDistributorForm" class="hidden">
@@ -1364,7 +1402,7 @@
                     </select><br>
 
                     <label for="Cp_asd">Kapasitas Tangki Aspal, Cp (m3):</label><br>
-                    <input type="number" name="Cp_asd" id="Cp_asd" step="0.1" min="0.1"><br>
+                    <input type="number" name="Cp_asd" id="Cp_asd"  ><br>
                 </div>
                 <!-- Formulir Concrete Paving Machine -->
                 <div id="concretePavingMachineForm" class="hidden">
@@ -1387,10 +1425,10 @@
                     </select><br>
 
                     <label for="b_cpm">Lebar Hamparan, b (m):</label><br>
-                    <input type="number" name="b_cpm" id="b_cpm" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_cpm" id="b_cpm"  ><br>
 
                     <label for="v_cpm">Kecepatan menghampar, v (m/menit):</label><br>
-                    <input type="number" name="v_cpm" id="v_cpm" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_cpm" id="v_cpm"  ><br>
                 </div>
                 <!-- Formulir Batching Plant (Concrete Pan Mixer) -->
                 <div id="batchingPlantForm" class="hidden">
@@ -1412,20 +1450,20 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_batch">Kapasitas Produksi, V (liter):</label><br>
-                    <input type="number" name="V_batch" id="V_batch" step="0.1" min="0.1"><br>
+                    <label for="V_batch">Kapasitas Alat, V (liter):</label><br>
+                    <input type="number" name="V_batch" id="V_batch"  ><br>
 
                     <label for="T1_batch">Lama Waktu Mengisi, T1 (menit):</label><br>
-                    <input type="number" name="T1_batch" id="T1_batch" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_batch" id="T1_batch"  ><br>
 
                     <label for="T2_batch">Lama Waktu Mengaduk, T2 (menit):</label><br>
-                    <input type="number" name="T2_batch" id="T2_batch" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_batch" id="T2_batch"  ><br>
 
                     <label for="T3_batch">Lama Waktu Menuang, T3 (menit):</label><br>
-                    <input type="number" name="T3_batch" id="T3_batch" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_batch" id="T3_batch"  ><br>
 
                     <label for="T4_batch">Lama Waktu Menunggu, dll., T4 (menit):</label><br>
-                    <input type="number" name="T4_batch" id="T4_batch" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_batch" id="T4_batch"  ><br>
                 </div>
                 <!-- Formulir Concrete Breaker (Drop Hammer) -->
                 <div id="concreteBreakerForm" class="hidden">
@@ -1448,13 +1486,13 @@
                     </select><br>
 
                     <label for="v_hammer">Kecepatan Rata-rata, v (m/menit):</label><br>
-                    <input type="number" name="v_hammer" id="v_hammer" step="0.1" min="0.1"><br>
+                    <input type="number" name="v_hammer" id="v_hammer"  ><br>
 
                     <label for="b_hammer">Lebar Penghancuran, b (m):</label><br>
-                    <input type="number" name="b_hammer" id="b_hammer" step="0.1" min="0.1"><br>
+                    <input type="number" name="b_hammer" id="b_hammer"  ><br>
 
                     <label for="t_hammer">Tebal Lapisan Beton, t (m):</label><br>
-                    <input type="number" name="t_hammer" id="t_hammer" step="0.1" min="0.1"><br>
+                    <input type="number" name="t_hammer" id="t_hammer"  ><br>
                 </div>
                 <!-- Formulir Asphalt Tank Truck -->
                 <div id="asphaltTankTruckForm" class="hidden">
@@ -1477,7 +1515,7 @@
                     </select><br>
 
                     <label for="Pa_att">Kapasitas Pompa Aspal, Pa (m3/jam):</label><br>
-                    <input type="number" name="Pa_att" id="Pa_att" step="0.1" min="0.1"><br>
+                    <input type="number" name="Pa_att" id="Pa_att"  ><br>
                 </div>
                 <!-- Formulir Cement Tank Truck -->
                 <div id="cementTankTruckForm" class="hidden">
@@ -1500,19 +1538,19 @@
                     </select><br>
 
                     <label for="V_ctt">V:</label><br>
-                    <input type="number" name="V_ctt" id="V_ctt" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_ctt" id="V_ctt"  ><br>
 
                     <label for="T1_ctt">T1:</label><br>
-                    <input type="number" name="T1_ctt" id="T1_ctt" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_ctt" id="T1_ctt"  ><br>
 
                     <label for="T2_ctt">T2:</label><br>
-                    <input type="number" name="T2_ctt" id="T2_ctt" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_ctt" id="T2_ctt"  ><br>
 
                     <label for="T3_ctt">T3:</label><br>
-                    <input type="number" name="T3_ctt" id="T3_ctt" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_ctt" id="T3_ctt"  ><br>
 
                     <label for="T4_ctt">T4:</label><br>
-                    <input type="number" name="T4_ctt" id="T4_ctt" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_ctt" id="T4_ctt"  ><br>
                 </div>
                 <!-- Formulir Concrete Truck Mixer -->
                 <div id="concreteTruckMixerForm" class="hidden">
@@ -1535,25 +1573,25 @@
                     </select><br>
 
                     <label for="V_ctm">Kapasitas Drum, V (m3):</label><br>
-                    <input type="number" name="V_ctm" id="V_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_ctm" id="V_ctm"  ><br>
 
                     <label for="Q1_ctm">Kapsitas Produksi Pengisi (Concrete Pan Mixer), Q1 (m3/jam):</label><br>
-                    <input type="number" name="Q1_ctm" id="Q1_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="Q1_ctm" id="Q1_ctm"  ><br>
 
                     <label for="L_ctm">Jarak Tempuh, L (km):</label><br>
-                    <input type="number" name="L_ctm" id="L_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="L_ctm" id="L_ctm"  ><br>
 
                     <label for="vF_ctm">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_ctm" id="vF_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_ctm" id="vF_ctm"  ><br>
 
                     <label for="vR_ctm">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_ctm" id="vR_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_ctm" id="vR_ctm"  ><br>
 
                     <label for="T4_ctm">Waktu Penumpahan, T4 (menit):</label><br>
-                    <input type="number" name="T4_ctm" id="T4_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_ctm" id="T4_ctm"  ><br>
 
                     <label for="T5_ctm">Waktu Menunggu, T5 (menit):</label><br>
-                    <input type="number" name="T5_ctm" id="T5_ctm" step="0.1" min="0.1"><br>
+                    <input type="number" name="T5_ctm" id="T5_ctm"  ><br>
                 </div>
                 <!-- Formulir Bore Pile Machine dia. 60 cm -->
                 <div id="borePileMachine60Form" class="hidden">
@@ -1576,46 +1614,46 @@
                     </select><br>
 
                     <label for="V_bor60">Kapasitas Alat, V (titik):</label><br>
-                    <input type="number" name="V_bor60" id="V_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_bor60" id="V_bor60"  ><br>
                     
                     <label for="p_bor60">Kedalaman Pemboran, P (m):</label><br>
-                    <input type="number" name="p_bor60" id="p_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="p_bor60" id="p_bor60"  ><br>
                     
                     <label for="T1_bor60">Waktu check titik bore, T1 (menit):</label><br>
-                    <input type="number" name="T1_bor60" id="T1_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T1_bor60" id="T1_bor60"  ><br>
                     
                     <label for="T2_bor60">Waktu persiapan alat T2, (menit):</label><br>
-                    <input type="number" name="T2_bor60" id="T2_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T2_bor60" id="T2_bor60"  ><br>
                     
                     <label for="T3_bor60">Waktu check ketegakan alat, T3 (menit):</label><br>
-                    <input type="number" name="T3_bor60" id="T3_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T3_bor60" id="T3_bor60"  ><br>
                     
                     <label for="T4_bor60">Waktu untuk pasang casing, T4 (menit):</label><br>
-                    <input type="number" name="T4_bor60" id="T4_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T4_bor60" id="T4_bor60"  ><br>
                     
                     <label for="T5_bor60">Waktu untuk pengeboran, T5 (menit):</label><br>
-                    <input type="number" name="T5_bor60" id="T5_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T5_bor60" id="T5_bor60"  ><br>
                     
                     <label for="T6_bor60">Waktu untuk cleaning, T6 (menit):</label><br>
-                    <input type="number" name="T6_bor60" id="T6_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T6_bor60" id="T6_bor60"  ><br>
                     
                     <label for="T7_bor60">Waktu untuk instalasi besi, T7 (menit):</label><br>
-                    <input type="number" name="T7_bor60" id="T7_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T7_bor60" id="T7_bor60"  ><br>
                     
                     <label for="T8_bor60">Waktu untuk pengecoran, T8 (menit):</label><br>
-                    <input type="number" name="T8_bor60" id="T8_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T8_bor60" id="T8_bor60"  ><br>
                     
                     <label for="T9_bor60">Waktu untuk tarik casing, T9 (menit):</label><br>
-                    <input type="number" name="T9_bor60" id="T9_bor60" step="0.1" min="0.1"><br>
+                    <input type="number" name="T9_bor60" id="T9_bor60"  ><br>
                     
                 </div>
                 <!-- Formulir Aplikator Cat Marka Jalan Thermoplastic -->
                 <div id="aplikatorCatThermoplasticForm" class="hidden">
                     <label for="V_cat">Kapasitas Pengecatan, V (kg/m2):</label><br>
-                    <input type="number" name="V_cat" id="V_cat" step="0.1" min="0.1"><br>
+                    <input type="number" name="V_cat" id="V_cat"  ><br>
 
                     <label for="Bc_cat">Berat Cat per m2, Bc (kg/m2):</label><br>
-                    <input type="number" name="Bc_cat" id="Bc_cat" step="0.1" min="0.1"><br>
+                    <input type="number" name="Bc_cat" id="Bc_cat"  ><br>
                 </div>
                 <!-- Formulir Kapal Tongkang/Perahu -->
                 <div id="kapalTongkangForm" class="hidden">
@@ -1637,26 +1675,26 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="Cp_kapal">Cp:</label><br>
-                    <input type="number" name="Cp_kapal" id="Cp_kapal" step="0.1" min="0.1"><br>
+                    <label for="Cp_kapal">Kapasitas Kapal,Cp (ton):</label><br>
+                    <input type="number" name="Cp_kapal" id="Cp_kapal"  ><br>
 
-                    <label for="BiL_kapal">BiL:</label><br>
-                    <input type="number" name="BiL_kapal" id="BiL_kapal" step="0.1" min="0.1"><br>
+                    <label for="BiL_kapal">BIL Isian, BiL (ton/m3):</label><br>
+                    <input type="number" name="BiL_kapal" id="BiL_kapal"  ><br>
 
-                    <label for="Q1_kapal">Q1:</label><br>
-                    <input type="number" name="Q1_kapal" id="Q1_kapal" step="0.1" min="0.1"><br>
+                    <label for="Q1_kapal">Kapasitas Produksi Excavator Pengisi, Q1 (m3/jam):</label><br>
+                    <input type="number" name="Q1_kapal" id="Q1_kapal"  ><br>
 
-                    <label for="L_kapal">L:</label><br>
-                    <input type="number" name="L_kapal" id="L_kapal" step="0.1" min="0.1"><br>
+                    <label for="L_kapal">Jarak Tempuh, L (km):</label><br>
+                    <input type="number" name="L_kapal" id="L_kapal"  ><br>
 
                     <label for="vF_kapal">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_kapal" id="vF_kapal" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_kapal" id="vF_kapal"  ><br>
 
                     <label for="vR_kapal">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_kapal" id="vR_kapal" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_kapal" id="vR_kapal"  ><br>
 
-                    <label for="T4_kapal">T4:</label><br>
-                    <input type="number" name="T4_kapal" id="T4_kapal" step="0.1" min="0.1"><br>
+                    <label for="T4_kapal">Waktu Lain-lain, tunggu waktu pasang,merapat ke dermaga, T4 (menit):</label><br>
+                    <input type="number" name="T4_kapal" id="T4_kapal"  ><br>
                 </div>
                 <!-- Formulir Fork Lift -->
                 <div id="forkLiftForm" class="hidden">
@@ -1678,23 +1716,23 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_fork">V:</label><br>
-                    <input type="number" name="V_fork" id="V_fork" step="0.1" min="0.1"><br>
+                    <label for="V_fork">Kapasitas Angkat, V (ton):</label><br>
+                    <input type="number" name="V_fork" id="V_fork"  ><br>
 
-                    <label for="L_fork">L:</label><br>
-                    <input type="number" name="L_fork" id="L_fork" step="0.1" min="0.1"><br>
+                    <label for="L_fork">Jarak angkat, L (km):</label><br>
+                    <input type="number" name="L_fork" id="L_fork"  ><br>
 
                     <label for="vF_fork">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_fork" id="vF_fork" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_fork" id="vF_fork"  ><br>
 
                     <label for="vR_fork">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_fork" id="vR_fork" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_fork" id="vR_fork"  ><br>
 
-                    <label for="T3_fork">T3:</label><br>
-                    <input type="number" name="T3_fork" id="T3_fork" step="0.1" min="0.1"><br>
+                    <label for="T3_fork">Waktu Mengangkat, Berputar, Memuat, T3 (menit):</label><br>
+                    <input type="number" name="T3_fork" id="T3_fork"  ><br>
 
-                    <label for="T4_fork">T4:</label><br>
-                    <input type="number" name="T4_fork" id="T4_fork" step="0.1" min="0.1"><br>
+                    <label for="T4_fork">Waktu Lain-lain, T4 (menit):</label><br>
+                    <input type="number" name="T4_fork" id="T4_fork"  ><br>
                 </div>
                 <!-- Formulir Concrete Cutter -->
                 <div id="concreteCutterForm" class="hidden">
@@ -1716,8 +1754,8 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="kapasitas_alat_cutt">Kapasitas Alat:</label><br>
-                    <input type="number" name="kapasitas_alat_cutt" id="kapasitas_alat_cutt" step="0.1" min="0.1"><br>
+                    <label for="kapasitas_alat_cutt">Kapasitas Pemotongan, V (m/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_cutt" id="kapasitas_alat_cutt"  ><br>
                 </div>
                 <!-- Formulir Power Broom -->
                 <div id="powerBroomForm" class="hidden">
@@ -1739,14 +1777,14 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="v_broom">V:</label><br>
-                    <input type="number" name="v_broom" id="v_broom" step="0.1" min="0.1"><br>
+                    <label for="v_broom">Kecepatan, v (km/jam):</label><br>
+                    <input type="number" name="v_broom" id="v_broom"  ><br>
 
-                    <label for="b_broom">b:</label><br>
-                    <input type="number" name="b_broom" id="b_broom" step="0.1" min="0.1"><br>
+                    <label for="b_broom">Lebar Sapu, b (m):</label><br>
+                    <input type="number" name="b_broom" id="b_broom"  ><br>
 
-                    <label for="Kdr_broom">Kdr:</label><br>
-                    <input type="number" name="Kdr_broom" id="Kdr_broom" step="0.1" min="0.1"><br>
+                    <label for="Kdr_broom">Kadar Aspal, Kdr (liter/m2):</label><br>
+                    <input type="number" name="Kdr_broom" id="Kdr_broom"  ><br>
                 </div>
                 <!-- Formulir Asphalt Slurry Seal Truck -->
                 <div id="asphaltSlurrySealTruckForm" class="hidden">
@@ -1768,14 +1806,14 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="Cp_asst">Cp:</label><br>
-                    <input type="number" name="Cp_asst" id="Cp_asst" step="0.1" min="0.1"><br>
+                    <label for="Cp_asst">Kapasitas Pencampuran, Cp (ton):</label><br>
+                    <input type="number" name="Cp_asst" id="Cp_asst"  ><br>
 
-                    <label for="v_asst">V:</label><br>
-                    <input type="number" name="v_asst" id="v_asst" step="0.1" min="0.1"><br>
+                    <label for="v_asst">Kecepatan Penghampran, v (km/jam):</label><br>
+                    <input type="number" name="v_asst" id="v_asst"  ><br>
 
-                    <label for="b_asst">b:</label><br>
-                    <input type="number" name="b_asst" id="b_asst" step="0.1" min="0.1"><br>
+                    <label for="b_asst">Lebar Hamparan, b (m):</label><br>
+                    <input type="number" name="b_asst" id="b_asst"  ><br>
                 </div>
                 <!-- Formulir Truck Mixer Agitator -->
                 <div id="truckMixerAgitatorForm" class="hidden">
@@ -1797,23 +1835,23 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_tma">V:</label><br>
-                    <input type="number" name="V_tma" id="V_tma" step="0.1" min="0.1"><br>
+                    <label for="V_tma">Kapasitas Drum, V (m3):</label><br>
+                    <input type="number" name="V_tma" id="V_tma"  ><br>
 
-                    <label for="L_tma">L:</label><br>
-                    <input type="number" name="L_tma" id="L_tma" step="0.1" min="0.1"><br>
+                    <label for="L_tma">Jarak Lokasi, L (m):</label><br>
+                    <input type="number" name="L_tma" id="L_tma"  ><br>
 
                     <label for="vF_tma">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_tma" id="vF_tma" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_tma" id="vF_tma"  ><br>
 
                     <label for="vR_tma">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_tma" id="vR_tma" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_tma" id="vR_tma"  ><br>
 
-                    <label for="T3_tma">T3:</label><br>
-                    <input type="number" name="T3_tma" id="T3_tma" step="0.1" min="0.1"><br>
+                    <label for="T3_tma">Waktu Mengisi, T3 (menit):</label><br>
+                    <input type="number" name="T3_tma" id="T3_tma"  ><br>
 
-                    <label for="T4_tma">T4:</label><br>
-                    <input type="number" name="T4_tma" id="T4_tma" step="0.1" min="0.1"><br>
+                    <label for="T4_tma">Waktu Menumpahkan, T4 (menit):</label><br>
+                    <input type="number" name="T4_tma" id="T4_tma"  ><br>
                 </div>
                 <!-- Formulir Self Propelled Mixer -->
                 <div id="selfPropelledMixerForm" class="hidden">
@@ -1835,17 +1873,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="v_spm">v:</label><br>
-                    <input type="number" name="v_spm" id="v_spm" step="0.1" min="0.1"><br>
+                    <label for="v_spm">Kecepatan Rata-rata, v (km/jam):</label><br>
+                    <input type="number" name="v_spm" id="v_spm"  ><br>
 
-                    <label for="b_spm">b:</label><br>
-                    <input type="number" name="b_spm" id="b_spm" step="0.1" min="0.1"><br>
+                    <label for="b_spm">Lebar Efektif Pencampuran, b (m):</label><br>
+                    <input type="number" name="b_spm" id="b_spm"  ><br>
 
-                    <label for="n_spm">n:</label><br>
-                    <input type="number" name="n_spm" id="n_spm" step="0.1" min="0.1"><br>
+                    <label for="n_spm">Jumlah Lintasan, n:</label><br>
+                    <input type="number" name="n_spm" id="n_spm"  ><br>
 
-                    <label for="t_spm">t:</label><br>
-                    <input type="number" name="t_spm" id="t_spm" step="0.1" min="0.1"><br>
+                    <label for="t_spm">Kedalaman Pencampuran, t (m):</label><br>
+                    <input type="number" name="t_spm" id="t_spm"  ><br>
                 </div>
                 <!-- Formulir Stressing Jack -->
                 <div id="stressingJackForm" class="hidden">
@@ -1867,17 +1905,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_stress">V:</label><br>
-                    <input type="number" name="V_stress" id="V_stress" step="0.1" min="0.1"><br>
+                    <label for="V_stress">Kapasitas Tendon, V (tendon):</label><br>
+                    <input type="number" name="V_stress" id="V_stress"  ><br>
 
-                    <label for="N_stress">N:</label><br>
-                    <input type="number" name="N_stress" id="N_stress" step="0.1" min="0.1"><br>
+                    <label for="N_stress">Jumlah Tendon, N (tendon):</label><br>
+                    <input type="number" name="N_stress" id="N_stress"  ><br>
 
-                    <label for="T1_stress">T1:</label><br>
-                    <input type="number" name="T1_stress" id="T1_stress" step="0.1" min="0.1"><br>
+                    <label for="T1_stress">Waktu Memasang Tendon, T1 (menit):</label><br>
+                    <input type="number" name="T1_stress" id="T1_stress"  ><br>
 
-                    <label for="T2_stress">T2:</label><br>
-                    <input type="number" name="T2_stress" id="T2_stress" step="0.1" min="0.1"><br>
+                    <label for="T2_stress">Waktu penarikan, hauling, pemsangan kopel, dan penarikan masing-masing tendon, T2 (menit):</label><br>
+                    <input type="number" name="T2_stress" id="T2_stress"  ><br>
                 </div>
                 <!-- Formulir Grouting Pump -->
                 <div id="groutingPumpForm" class="hidden">
@@ -1899,17 +1937,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_grout">V:</label><br>
-                    <input type="number" name="V_grout" id="V_grout" step="0.1" min="0.1"><br>
+                    <label for="V_grout">Kapasitas Tendon, V (tendon):</label><br>
+                    <input type="number" name="V_grout" id="V_grout"  ><br>
 
-                    <label for="N_grout">N:</label><br>
-                    <input type="number" name="N_grout" id="N_grout" step="0.1" min="0.1"><br>
+                    <label for="N_grout">Jumlah Tendon, N (tendon):</label><br>
+                    <input type="number" name="N_grout" id="N_grout"  ><br>
 
-                    <label for="T1_grout">T1:</label><br>
-                    <input type="number" name="T1_grout" id="T1_grout" step="0.1" min="0.1"><br>
+                    <label for="T1_grout">Waktu Memasang Tendon, T1 (menit):</label><br>
+                    <input type="number" name="T1_grout" id="T1_grout"  ><br>
 
-                    <label for="T2_grout">T2:</label><br>
-                    <input type="number" name="T2_grout" id="T2_grout" step="0.1" min="0.1"><br>
+                    <label for="T2_grout">Waktu penarikan, hauling, pemsangan kopel, dan penarikan masing-masing tendon, T2 (menit):</label><br>
+                    <input type="number" name="T2_grout" id="T2_grout"  ><br>
                 </div>
                 <!-- Formulir Trailer Tronton 30 T -->
                 <div id="trailerTronton30tForm" class="hidden">
@@ -1931,52 +1969,52 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_tronton">V:</label><br>
-                    <input type="number" name="V_tronton" id="V_tronton" step="0.1" min="0.1"><br>
+                    <label for="V_tronton">Kapasitas Bak sekali muat, V (ton):</label><br>
+                    <input type="number" name="V_tronton" id="V_tronton"  ><br>
 
-                    <label for="L_tronton">L:</label><br>
-                    <input type="number" name="L_tronton" id="L_tronton" step="0.1" min="0.1"><br>
+                    <label for="L_tronton">Jarak Lokasi, L (km):</label><br>
+                    <input type="number" name="L_tronton" id="L_tronton"  ><br>
 
                     <label for="vF_tronton">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_tronton" id="vF_tronton" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_tronton" id="vF_tronton"  ><br>
 
                     <label for="vR_tronton">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_tronton" id="vR_tronton" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_tronton" id="vR_tronton"  ><br>
 
-                    <label for="T1_tronton">T1:</label><br>
-                    <input type="number" name="T1_tronton" id="T1_tronton" step="0.1" min="0.1"><br>
+                    <label for="T1_tronton">Waktu Muat, T1 (menit):</label><br>
+                    <input type="number" name="T1_tronton" id="T1_tronton"  ><br>
 
-                    <label for="T4_tronton">T4:</label><br>
-                    <input type="number" name="T4_tronton" id="T4_tronton" step="0.1" min="0.1"><br>
+                    <label for="T4_tronton">Waktu Kosong, T4 (menit):</label><br>
+                    <input type="number" name="T4_tronton" id="T4_tronton"  ><br>
 
-                    <label for="T5_tronton">T5:</label><br>
-                    <input type="number" name="T5_tronton" id="T5_tronton" step="0.1" min="0.1"><br>
+                    <label for="T5_tronton">Waktu Tambahan, T5 (menit):</label><br>
+                    <input type="number" name="T5_tronton" id="T5_tronton"  ><br>
                 </div>
                 <!-- Formulir Ponton + Tug Boat -->
                 <div id="pontonForm" class="hidden">
-                    <label for="V_ponton">V:</label><br>
-                    <input type="number" name="V_ponton" id="V_ponton" step="0.1" min="0.1"><br>
+                    <label for="V_ponton">Kapasitas Muatan Ponton, V (m):</label><br>
+                    <input type="number" name="V_ponton" id="V_ponton"  ><br>
 
-                    <label for="Qa_ponton">Qa:</label><br>
-                    <input type="number" name="Qa_ponton" id="Qa_ponton" step="0.1" min="0.1"><br>
+                    <label for="Qa_ponton">Kapasitas Produksi Pemancangan, Qa (m/jam):</label><br>
+                    <input type="number" name="Qa_ponton" id="Qa_ponton"  ><br>
 
-                    <label for="Q1_ponton">Q1:</label><br>
-                    <input type="number" name="Q1_ponton" id="Q1_ponton" step="0.1" min="0.1"><br>
+                    <label for="Q1_ponton">Kapasitas Produksi Excavator Pengisi, Q1 (m3/jam):</label><br>
+                    <input type="number" name="Q1_ponton" id="Q1_ponton"  ><br>
 
-                    <label for="L_ponton">L:</label><br>
-                    <input type="number" name="L_ponton" id="L_ponton" step="0.1" min="0.1"><br>
+                    <label for="L_ponton">Jarak Tempuh, L (km):</label><br>
+                    <input type="number" name="L_ponton" id="L_ponton"  ><br>
 
                     <label for="vF_ponton">Kecepatan Bermuatan, vF (km/jam):</label><br>
-                    <input type="number" name="vF_ponton" id="vF_ponton" step="0.1" min="0.1"><br>
+                    <input type="number" name="vF_ponton" id="vF_ponton"  ><br>
 
                     <label for="vR_ponton">Kecepatan Kosong, vR (km/jam):</label><br>
-                    <input type="number" name="vR_ponton" id="vR_ponton" step="0.1" min="0.1"><br>
+                    <input type="number" name="vR_ponton" id="vR_ponton"  ><br>
 
-                    <label for="T1_ponton">T1:</label><br>
-                    <input type="number" name="T1_ponton" id="T1_ponton" step="0.1" min="0.1"><br>
+                    <label for="T1_ponton">Waktu Muat, T1 (menit):</label><br>
+                    <input type="number" name="T1_ponton" id="T1_ponton"  ><br>
 
-                    <label for="T5_ponton">T5:</label><br>
-                    <input type="number" name="T5_ponton" id="T5_ponton" step="0.1" min="0.1"><br>
+                    <label for="T5_ponton">Waktu Tambahan, T5 (menit):</label><br>
+                    <input type="number" name="T5_ponton" id="T5_ponton"  ><br>
                 </div>
                 <!-- Formulir Pre Heater/ Boiler -->
                 <div id="boilerForm" class="hidden">
@@ -1998,11 +2036,11 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_boil">V:</label><br>
-                    <input type="number" name="V_boil" id="V_boil" step="0.1" min="0.1"><br>
+                    <label for="V_boil">Kapasitas Alat, V (kg):</label><br>
+                    <input type="number" name="V_boil" id="V_boil"  ><br>
 
-                    <label for="waktu_siklus_boil">Waktu Siklus:</label><br>
-                    <input type="number" name="waktu_siklus_boil" id="waktu_siklus_boil" step="0.1" min="0.1"><br>
+                    <label for="waktu_siklus_boil">Waktu Siklus, Ts (menit):</label><br>
+                    <input type="number" name="waktu_siklus_boil" id="waktu_siklus_boil"  ><br>
                 </div>
                 <!-- Formulir Drum Mixer Khusus -->
                 <div id="drumMixerForm" class="hidden">
@@ -2024,17 +2062,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_dmk">V:</label><br>
-                    <input type="number" name="V_dmk" id="V_dmk" step="0.1" min="0.1"><br>
+                    <label for="V_dmk">Kapasitas Alat, V (kg):</label><br>
+                    <input type="number" name="V_dmk" id="V_dmk"  ><br>
 
-                    <label for="T1_dmk">T1:</label><br>
-                    <input type="number" name="T1_dmk" id="T1_dmk" step="0.1" min="0.1"><br>
+                    <label for="T1_dmk">Waktu Menuang Bahan, T1 (menit):</label><br>
+                    <input type="number" name="T1_dmk" id="T1_dmk"  ><br>
 
-                    <label for="T2_dmk">T2:</label><br>
-                    <input type="number" name="T2_dmk" id="T2_dmk" step="0.1" min="0.1"><br>
+                    <label for="T2_dmk">Waktu Mengaduk Agregat, T2 (menit):</label><br>
+                    <input type="number" name="T2_dmk" id="T2_dmk"  ><br>
 
-                    <label for="T3_dmk">T3:</label><br>
-                    <input type="number" name="T3_dmk" id="T3_dmk" step="0.1" min="0.1"><br>
+                    <label for="T3_dmk">Waktu Menuangkan Agrgat, T3 (menit):</label><br>
+                    <input type="number" name="T3_dmk" id="T3_dmk"  ><br>
                 </div>
                 <!-- Formulir Hot Compressor Air Lance (HCA) -->
                 <div id="hcaForm" class="hidden">
@@ -2056,11 +2094,11 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_hca">V:</label><br>
-                    <input type="number" name="V_hca" id="V_hca" step="0.1" min="0.1"><br>
+                    <label for="V_hca">Kapasitas Alat, V (kg):</label><br>
+                    <input type="number" name="V_hca" id="V_hca"  ><br>
 
-                    <label for="waktu_siklus_hca">Waktu Siklus:</label><br>
-                    <input type="number" name="waktu_siklus_hca" id="waktu_siklus_hca" step="0.1" min="0.1"><br>
+                    <label for="waktu_siklus_hca">Waktu Siklus, Ts (menit):</label><br>
+                    <input type="number" name="waktu_siklus_hca" id="waktu_siklus_hca"  ><br>
                 </div>
                 <!-- Formulir Silicon Seal Pump -->
                 <div id="siliconSealPumpForm" class="hidden">
@@ -2082,11 +2120,11 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_silicon">V:</label><br>
-                    <input type="number" name="V_silicon" id="V_silicon" step="0.1" min="0.1"><br>
+                    <label for="V_silicon">Kapasitas, V (kg/jam):</label><br>
+                    <input type="number" name="V_silicon" id="V_silicon"  ><br>
 
-                    <label for="Ws_silicon">Ws:</label><br>
-                    <input type="number" name="Ws_silicon" id="Ws_silicon" step="0.1" min="0.1"><br>
+                    <label for="Ws_silicon">Berat Silicon Seal, Ws (kg):</label><br>
+                    <input type="number" name="Ws_silicon" id="Ws_silicon"  ><br>
                 </div>
                 <!-- Formulir Kunci Torsi (Torque Wrench) -->
                 <div id="kunciTorsiForm" class="hidden">
@@ -2108,17 +2146,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="T1_torsi">T1:</label><br>
-                    <input type="number" name="T1_torsi" id="T1_torsi" step="0.1" min="0.1"><br>
+                    <label for="T1_torsi">Waktu memeriksa kondisi baut,T1 (menit):</label><br>
+                    <input type="number" name="T1_torsi" id="T1_torsi"  ><br>
 
-                    <label for="T2_torsi">T2:</label><br>
-                    <input type="number" name="T2_torsi" id="T2_torsi" step="0.1" min="0.1"><br>
+                    <label for="T2_torsi">Waktu melepaskan baut lama, membersihkan lubang, T2 (menit):</label><br>
+                    <input type="number" name="T2_torsi" id="T2_torsi"  ><br>
 
-                    <label for="T3_torsi">T3:</label><br>
-                    <input type="number" name="T3_torsi" id="T3_torsi" step="0.1" min="0.1"><br>
+                    <label for="T3_torsi">Waktu memasang ring dan mur, T3 (menit):</label><br>
+                    <input type="number" name="T3_torsi" id="T3_torsi"  ><br>
 
-                    <label for="T4_torsi">T4:</label><br>
-                    <input type="number" name="T4_torsi" id="T4_torsi" step="0.1" min="0.1"><br>
+                    <label for="T4_torsi">Waktu mengencangkan sampai kondisi pretensioning, T4 (menit):</label><br>
+                    <input type="number" name="T4_torsi" id="T4_torsi"  ><br>
                 </div>
                 <!-- Formulir Gerinda Tangan -->
                 <div id="gerindaTanganForm" class="hidden">
@@ -2140,8 +2178,8 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="kapasitas_alat_gerinda">Kapasitas Alat:</label><br>
-                    <input type="number" name="kapasitas_alat_gerinda" id="kapasitas_alat_gerinda" step="0.1" min="0.1"><br>
+                    <label for="kapasitas_alat_gerinda">Kapasitas Alat, V (m2/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_gerinda" id="kapasitas_alat_gerinda"  ><br>
                 </div>
                 <!-- Formulir Water Jet Blasting -->
                 <div id="waterJetBlastingForm" class="hidden">
@@ -2163,8 +2201,8 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="kapasitas_alat_jet">Kapasitas Alat:</label><br>
-                    <input type="number" name="kapasitas_alat_jet" id="kapasitas_alat_jet" step="0.1" min="0.1"><br>
+                    <label for="kapasitas_alat_jet">Kapasitas Alat, V (m2/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_jet" id="kapasitas_alat_jet"  ><br>
                 </div>
                 <!-- Formulir Hand Mixer -->
                 <div id="handMixerForm" class="hidden">
@@ -2186,14 +2224,14 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_hand">V:</label><br>
-                    <input type="number" name="V_hand" id="V_hand" step="0.1" min="0.1"><br>
+                    <label for="V_hand">Kapasitas Alat, V (kg):</label><br>
+                    <input type="number" name="V_hand" id="V_hand"  ><br>
 
-                    <label for="T1_hand">T1:</label><br>
-                    <input type="number" name="T1_hand" id="T1_hand" step="0.1" min="0.1"><br>
+                    <label for="T1_hand">Waktu membuka dan mencampur, T1 (menit):</label><br>
+                    <input type="number" name="T1_hand" id="T1_hand"  ><br>
 
-                    <label for="T2_hand">T2:</label><br>
-                    <input type="number" name="T2_hand" id="T2_hand" step="0.1" min="0.1"><br>
+                    <label for="T2_hand">Waktu mengaduk, T2 (menit):</label><br>
+                    <input type="number" name="T2_hand" id="T2_hand"  ><br>
                 </div>
                 <!-- Formulir Mesin Bor -->
                 <div id="mesinBorForm" class="hidden">
@@ -2215,17 +2253,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="V_bor">V:</label><br>
-                    <input type="number" name="V_bor" id="V_bor" step="0.1" min="0.1"><br>
+                    <label for="V_bor">Kapasitas Pemboran, V (n lubang):</label><br>
+                    <input type="number" name="V_bor" id="V_bor"  ><br>
 
-                    <label for="Nb_bor">Nb:</label><br>
-                    <input type="number" name="Nb_bor" id="Nb_bor" step="0.1" min="0.1"><br>
+                    <label for="Nb_bor">Jumlah Titik Bor, Nb (n lubang):</label><br>
+                    <input type="number" name="Nb_bor" id="Nb_bor"  ><br>
 
-                    <label for="T1_bor">T1:</label><br>
-                    <input type="number" name="T1_bor" id="T1_bor" step="0.1" min="0.1"><br>
+                    <label for="T1_bor">Waktu Persiapan, T1 (menit):</label><br>
+                    <input type="number" name="T1_bor" id="T1_bor"  ><br>
 
-                    <label for="T2_bor">T2:</label><br>
-                    <input type="number" name="T2_bor" id="T2_bor" step="0.1" min="0.1"><br>
+                    <label for="T2_bor">Waktu Pemboran, T2 (menit):</label><br>
+                    <input type="number" name="T2_bor" id="T2_bor"  ><br>
                 </div>
                 <!--Fromulir Mesin Amplas Kayu-->
                 <div id="mesinAmplasKayuForm" class="hidden">
@@ -2247,8 +2285,8 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
                 
-                    <label for="kapasitas_alat_amplas">Kapasitas Alat (m<sup>3</sup>):</label><br>
-                    <input type="number" name="kapasitas_alat_amplas" id="kapasitas_alat_amplas" step="0.1" min="0.1"><br>
+                    <label for="kapasitas_alat_amplas">Kapasitas Alat, V (m2/jam):</label><br>
+                    <input type="number" name="kapasitas_alat_amplas" id="kapasitas_alat_amplas"  ><br>
                 </div>                
                 <!-- Formulir Stamper -->
                 <div id="stamperForm" class="hidden">
@@ -2270,11 +2308,11 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="bp_stamper">BP:</label><br>
-                    <input type="number" name="bp_stamper" id="bp_stamper" step="0.1" min="0.1"><br>
+                    <label for="bp_stamper">Kapasitas Alat, bp (m2/jam):</label><br>
+                    <input type="number" name="bp_stamper" id="bp_stamper"  ><br>
 
-                    <label for="L_stamper">L:</label><br>
-                    <input type="number" name="L_stamper" id="L_stamper" step="0.1" min="0.1"><br>
+                    <label for="L_stamper">Lebar Sambungan Plate, L (m):</label><br>
+                    <input type="number" name="L_stamper" id="L_stamper"  ><br>
                 </div>
 
                 <!-- Formulir Lift Barang 6-10 lantai, Bm 1,0 ton -->
@@ -2305,17 +2343,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="Cp_lift1">Cp:</label><br>
-                    <input type="number" name="Cp_lift1" id="Cp_lift1" step="0.1" min="0.1"><br>
+                    <label for="Cp_lift1">Kapasitas Lift Barang, Cp (ton):</label><br>
+                    <input type="number" name="Cp_lift1" id="Cp_lift1"  ><br>
 
-                    <label for="H_lift1">H:</label><br>
-                    <input type="number" name="H_lift1" id="H_lift1" step="0.1" min="0.1"><br>
+                    <label for="H_lift1">Tinggi Lift, H (m):</label><br>
+                    <input type="number" name="H_lift1" id="H_lift1"  ><br>
 
-                    <label for="T1_lift1">T1:</label><br>
-                    <input type="number" name="T1_lift1" id="T1_lift1" step="0.1" min="0.1"><br>
+                    <label for="T1_lift1">Waktu memuat barang ke lift secara manual, T1 (menit):</label><br>
+                    <input type="number" name="T1_lift1" id="T1_lift1"  ><br>
 
-                    <label for="T3_lift1">T3:</label><br>
-                    <input type="number" name="T3_lift1" id="T3_lift1" step="0.1" min="0.1"><br>
+                    <label for="T3_lift1">Waktu mengambil barang dari lift secara manual, T3 (menit):</label><br>
+                    <input type="number" name="T3_lift1" id="T3_lift1"  ><br>
                 </div>
                 <!-- Formulir Lift Barang 10-24 lantai, Bm 1,0 ton -->
                 <div id="liftBarang2Form" class="hidden">
@@ -2337,17 +2375,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="Cp_lift2">Cp:</label><br>
-                    <input type="number" name="Cp_lift2" id="Cp_lift2" step="0.1" min="0.1"><br>
+                    <label for="Cp_lift2">Kapasitas Lift Barang, Cp (ton):</label><br>
+                    <input type="number" name="Cp_lift2" id="Cp_lift2"  ><br>
 
-                    <label for="H_lift2">H:</label><br>
-                    <input type="number" name="H_lift2" id="H_lift2" step="0.1" min="0.1"><br>
+                    <label for="H_lift2">Tinggi Lift, H (m):</label><br>
+                    <input type="number" name="H_lift2" id="H_lift2"  ><br>
 
-                    <label for="T1_lift2">T1:</label><br>
-                    <input type="number" name="T1_lift2" id="T1_lift2" step="0.1" min="0.1"><br>
+                    <label for="T1_lift2">Waktu memuat barang ke lift secara manual, T1 (menit):</label><br>
+                    <input type="number" name="T1_lift2" id="T1_lift2"  ><br>
 
-                    <label for="T3_lift2">T3:</label><br>
-                    <input type="number" name="T3_lift2" id="T3_lift2" step="0.1" min="0.1"><br>
+                    <label for="T3_lift2">Waktu mengambil barang dari lift secara manual, T3 (menit):</label><br>
+                    <input type="number" name="T3_lift2" id="T3_lift2"  ><br>
                 </div>
                 <!-- Formulir Lift Barang 10-24 lantai, Bm 2,0 ton -->
                 <div id="liftBarang3Form" class="hidden">
@@ -2369,17 +2407,17 @@
                         <option value="Buruk sekali">Buruk sekali</option>
                     </select><br>
 
-                    <label for="Cp_lift3">Cp:</label><br>
-                    <input type="number" name="Cp_lift3" id="Cp_lift3" step="0.1" min="0.1"><br>
+                    <label for="Cp_lift3">Kapasitas Lift Barang, Cp (ton):</label><br>
+                    <input type="number" name="Cp_lift3" id="Cp_lift3"  ><br>
 
-                    <label for="H_lift3">H:</label><br>
-                    <input type="number" name="H_lift3" id="H_lift3" step="0.1" min="0.1"><br>
+                    <label for="H_lift3">Tinggi Lift, H (m):</label><br>
+                    <input type="number" name="H_lift3" id="H_lift3"  ><br>
 
-                    <label for="T1_lift3">T1:</label><br>
-                    <input type="number" name="T1_lift3" id="T1_lift3" step="0.1" min="0.1"><br>
+                    <label for="T1_lift3">Waktu memuat barang ke lift secara manual, T1 (menit):</label><br>
+                    <input type="number" name="T1_lift3" id="T1_lift3"  ><br>
 
-                    <label for="T3_lift3">T3:</label><br>
-                    <input type="number" name="T3_lift3" id="T3_lift3" step="0.1" min="0.1"><br>
+                    <label for="T3_lift3">Waktu mengambil barang dari lift secara manual, T3 (menit):</label><br>
+                    <input type="number" name="T3_lift3" id="T3_lift3"  ><br>
                 </div>
                 <!-- Formulir Crane (Stationary Stand By) 40 Ton -->
                 <div id="crane1Form" class="hidden">
@@ -2411,21 +2449,21 @@
                             <option value="Buruk sekali">Buruk sekali</option>
                         </select><br>
             
-                        <label for="V_crane1">Volume:</label><br>
-                        <input type="number" name="V_crane1" id="V_crane1" step="0.1" min="0.1"><br>
+                        <label for="V_crane1">Kapasitas Crane, V (ton):</label><br>
+                        <input type="number" name="V_crane1" id="V_crane1"><br>
             
                         <div id="lokasiFields" class="hidden">
                             <label for="lokasi_crane1">Lokasi:</label><br>
                             <select name="lokasi_crane1" id="lokasi_crane1">
-                                <option value="1">Baik sekali</option>
-                                <option value="2">Baik</option>
-                                <option value="3">Sedang</option>
+                                <option value="1">Lokasi Material/Barang (M/B) Terkumpul di lokasi terjauh 15 m</option>
+                                <option value="2">Lokasi Material/Barang (M/B) tersebar dengan jarak terjauh 50 m</option>
+                                <option value="3">Lokasi Material/Barang (M/B) 60% terkumpul, 40% tersebar dengan jarak terjauh 50 m</option>
                             </select><br>
                         </div>
             
                         <div id="lantaiFields" class="hidden">
                             <label for="lantai_crane1">Lantai:</label><br>
-                            <input type="text" name="lantai_crane1" id="lantai_crane1"><br>
+                            <input type="number" name="lantai_crane1" id="lantai_crane1" min="1" max="5"><br>
                         </div>
                     </div>
                 </div>
@@ -2459,15 +2497,15 @@
                             <option value="Buruk sekali">Buruk sekali</option>
                         </select><br>
             
-                        <label for="V_crane2">Volume:</label><br>
-                        <input type="number" name="V_crane2" id="V_crane2" step="0.1" min="0.1"><br>
+                        <label for="V_crane2">Kapasitas Crane, V (ton):</label><br>
+                        <input type="number" name="V_crane2" id="V_crane2"  ><br>
             
                         <div id="lokasiCrane2Fields" class="hidden">
                             <label for="lokasi_crane2">Lokasi:</label><br>
                             <select name="lokasi_crane1" id="lokasi_crane1">
-                                <option value="1">Baik sekali</option>
-                                <option value="2">Baik</option>
-                                <option value="3">Sedang</option>
+                                <option value="1">Lokasi Material/Barang (M/B) Terkumpul di lokasi terjauh 15 m</option>
+                                <option value="2">Lokasi Material/Barang (M/B) tersebar dengan jarak terjauh 50 m</option>
+                                <option value="3">Lokasi Material/Barang (M/B) 60% terkumpul, 40% tersebar dengan jarak terjauh 50 m</option>
                             </select><br>
                         </div>
             
@@ -2507,58 +2545,24 @@
                             <option value="Buruk sekali">Buruk sekali</option>
                         </select><br>
             
-                        <label for="V_crane3">Volume:</label><br>
-                        <input type="number" name="V_crane3" id="V_crane3" step="0.1" min="0.1"><br>
+                        <label for="V_crane3">Kapasitas Crane, V (ton):</label><br>
+                        <input type="number" name="V_crane3" id="V_crane3"  ><br>
             
                         <div id="lokasiCrane3Fields" class="hidden">
                             <label for="lokasi_crane3">Lokasi:</label><br>
-                            <input type="text" name="lokasi_crane3" id="lokasi_crane3"><br>
+                                <option value="1">Lokasi Material/Barang (M/B) Terkumpul di lokasi terjauh 15 m</option>
+                                <option value="2">Lokasi Material/Barang (M/B) tersebar dengan jarak terjauh 50 m</option>
+                                <option value="3">Lokasi Material/Barang (M/B) 60% terkumpul, 40% tersebar dengan jarak terjauh 50 m</option>
                         </div>
             
                         <div id="lantaiCrane3Fields" class="hidden">
                             <label for="lantai_crane3">Lantai:</label><br>
-                            <input type="number" name="lantai_crane3" id="lantai_crane3" min="6" max="11"><br>
+                            <input type="number" name="lantai_crane3" id="lantai_crane3" min="12" max="28"><br>
                         </div>
                     </div>
                 </div>
                 <!-- Formulir Flat Bed Truck -->
-                <div id="flat_bed_truckForm" class="hidden">
-                    <label for="kondisi_operasi_flat">Kondisi Operasi:</label><br>
-                    <select name="kondisi_operasi_flat" id="kondisi_operasi_flat">
-                        <option value="Baik sekali">Baik sekali</option>
-                        <option value="Baik">Baik</option>
-                        <option value="Sedang">Sedang</option>
-                        <option value="Buruk">Buruk</option>
-                        <option value="Buruk sekali">Buruk sekali</option>
-                    </select><br>
-
-                    <label for="pemeliharaan_mesin_flat">Pemeliharaan Mesin:</label><br>
-                    <select name="pemeliharaan_mesin_flat" id="pemeliharaan_mesin_flat">
-                        <option value="Baik sekali">Baik sekali</option>
-                        <option value="Baik">Baik</option>
-                        <option value="Sedang">Sedang</option>
-                        <option value="Buruk">Buruk</option>
-                        <option value="Buruk sekali">Buruk sekali</option>
-                    </select><br>
-
-                    <label for="kapasitas_alat">Kapasitas Alat (ton):</label><br>
-                    <input type="number" name="kapasitas_alat" id="kapasitas_alat" step="0.1" min="0.1"><br>
-
-                    <label for="jarak_lokasi">Jarak Lokasi (km):</label><br>
-                    <input type="number" name="jarak_lokasi" id="jarak_lokasi" step="0.1" min="0.1"><br>
-
-                    <label for="kecepatan_bermuatan">Kecepatan Bermuatan (km/jam):</label><br>
-                    <input type="number" name="kecepatan_bermuatan" id="kecepatan_bermuatan" step="0.1" min="0.1"><br>
-
-                    <label for="kecepatan_kosong">Kecepatan Kosong (km/jam):</label><br>
-                    <input type="number" name="kecepatan_kosong" id="kecepatan_kosong" step="0.1" min="0.1"><br>
-
-                    <label for="waktu_muat">Waktu Muat (menit):</label><br>
-                    <input type="number" name="waktu_muat" id="waktu_muat" step="0.1" min="0.1"><br>
-
-                    <label for="waktu_bongkar">Waktu Bongkar (menit):</label><br>
-                    <input type="number" name="waktu_bongkar" id="waktu_bongkar" step="0.1" min="0.1"><br>
-                </div>
+                
 
                 <button type="submit" class="calculate-button">Hitung</button>
             </form>
@@ -2566,7 +2570,7 @@
         <div class="result-container" id="resultContainer">
             {% if hasil %}
                 <section id="resultContainer">
-                    <h2>Hasil Perhitungan {{ alat.capitalize() }}</h2>
+                    <h1>Hasil Perhitungan {{ alat }}</h1>
                     {% if 'error' in hasil %}
                         <p class="error">{{ hasil['error'] }}</p>
                     {% else %}
